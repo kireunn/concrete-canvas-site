@@ -1,0 +1,1204 @@
+<!doctype html><html lang="en"><head><meta name="robots" content="noindex,nofollow"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="alternate" hreflang="ru" href="../deploy.html"><link rel="alternate" hreflang="ky" href="../ky/deploy.html"><link rel="alternate" hreflang="en" href="../en/deploy.html"><title>DEPLOY 14R — Concrete Canvas Central Asia</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Inter:wght@400;500;600&display=swap">
+<style>
+/* Layout: вайрфрейм 1920 → контейнер 1420px; полноширинные полосы; корпоративный светлый стиль uccr.su (один светлый вид по макету) */
+:root{
+  --blue:#1376bc; --blue-2:#1e74bc; --blue-soft:#4f8fc7; --blue-pale:#8bbadf; --ink:#000; --muted:#6e6e6e;
+  --bg:#fff; --soft:#f8f8f8; --grey:#efefef; --band:#d4d4d4; --band-dark:#8c8c8c; --line:#e3e3e3; --sand:#d8cdcd;
+  --ok:#c8ebc4; --mid:#fbe7a6; --bad:#f6c1b8;
+  --f-head:"Montserrat",Arial,sans-serif; --f-body:"Inter","Montserrat",Arial,sans-serif;
+  --wrap:1420px; color-scheme:light;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-head);font-size:16px;line-height:1.5}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+.wrap{max-width:calc(var(--wrap) + 32px);margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3,h4{font-family:var(--f-head);margin:0;text-wrap:balance}
+p{margin:0}
+.h-sec{font-size:clamp(30px,3.4vw,64px);font-weight:600;line-height:1.2}
+.h2{font-size:clamp(24px,2.5vw,48px);font-weight:500;line-height:1.2}
+.h3{font-size:clamp(20px,1.7vw,32px);font-weight:600;line-height:1.25}
+.center{text-align:center}
+.blue{color:var(--blue)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:2px solid var(--blue);color:var(--blue);font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:14px 32px;transition:background .25s,color .25s;cursor:pointer;background:#fff;font-family:var(--f-head);font-size:16px;text-align:center}
+.btn:hover,.btn:focus-visible{background:var(--blue);color:#fff;outline:none}
+.btn.light{border-color:#fff;color:#fff;background:transparent}
+.btn.light:hover,.btn.light:focus-visible{background:#fff;color:var(--blue)}
+.btn.big{min-width:min(369px,100%);padding-block:20px;font-size:20px}
+.btn.solid{background:var(--blue);color:#fff;border-radius:40px;text-transform:none;letter-spacing:0;font-size:20px;padding:18px 48px}
+.btn.solid:hover{background:#0f5f99}
+:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
+
+/* HEADER */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:#fff}
+header{background:#fff;position:sticky;top:env(safe-area-inset-top,0px);z-index:50;box-shadow:0 1px 0 var(--line)}
+.top{display:flex;justify-content:flex-end;align-items:center;gap:24px;padding-top:14px;font-weight:500;font-size:15px}
+.lang{position:relative;display:inline-grid;grid-template-columns:repeat(3,1fr);padding:3px;border:1.5px solid var(--blue);border-radius:999px;background:#fff;isolation:isolate}
+.lang::before{content:"";position:absolute;z-index:-1;top:3px;bottom:3px;left:3px;width:calc((100% - 6px)/3);border-radius:999px;background:var(--blue);box-shadow:0 2px 8px rgba(19,118,188,.35);transform:translateX(calc(var(--i,0) * 100%));transition:transform .35s cubic-bezier(.5,.1,.2,1)}
+.lang a{all:unset;cursor:pointer;text-align:center;padding:5px 12px;font-size:13px;font-weight:600;letter-spacing:.06em;color:var(--blue);border-radius:999px;transition:color .25s}
+.lang a:hover{color:#0f5f99}
+.lang a[aria-pressed="true"]{color:#fff}
+.lang a:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.top .c{display:flex;align-items:center;gap:6px;color:var(--blue);user-select:all}
+.top svg{width:26px;height:26px;flex:none}
+.yt{color:var(--blue);display:flex}
+.bar{display:flex;align-items:center;gap:28px;padding-block:12px 16px;position:relative}
+.logo{display:block;flex:none}.logo img{height:68px;width:auto;display:block}.logo .lg-w{display:none}
+nav.main{display:flex;gap:18px;flex-wrap:wrap;font-weight:500;font-size:15px;margin-left:auto}
+nav.main a{position:relative;padding:4px 0;white-space:nowrap}
+nav.main a::after{content:"";position:absolute;left:0;right:100%;bottom:0;height:2px;background:var(--blue);transition:right .25s}
+nav.main a:hover,nav.main a.on{color:var(--blue)}nav.main a:hover::after,nav.main a.on::after{right:0}
+.burger{display:none;margin-left:auto;background:none;border:0;padding:8px;cursor:pointer;color:var(--ink)}
+.burger svg{width:30px;height:30px}
+
+/* SUBNAV (синяя полоса) */
+.subnav{background:#1576bf;color:#fff}
+.subnav .wrap{display:flex;justify-content:center;flex-wrap:wrap;padding-block:14px;font-weight:600;font-size:15px;row-gap:6px}
+.subnav a,.subnav button{all:unset;cursor:pointer;padding:0 12px;border-left:1.5px solid #fff;line-height:1.1}
+.subnav a:first-child,.subnav button:first-child{border-left:0}
+.subnav a:hover,.subnav a.on,.subnav button:hover{text-decoration:underline;text-underline-offset:4px}
+
+/* PAGE HERO */
+.phero{position:relative;height:clamp(200px,23vw,440px);background:var(--sand) center/cover no-repeat;display:grid;place-items:center;overflow:hidden}
+.phero .tbox{background:rgba(30,116,188,.92);color:#fff;font-weight:600;font-size:clamp(22px,2.5vw,48px);padding:clamp(14px,1.8vw,34px) clamp(24px,3.6vw,70px);min-width:min(34%,90vw);text-align:center;animation:rise .8s ease-out both}
+.phero .tbox.pale{background:var(--blue-pale)}
+.phero .tbox.mid{background:#72a3c9}
+.phero .logo-box{width:clamp(220px,22vw,420px);box-shadow:0 8px 30px rgba(0,0,0,.25);animation:rise .8s ease-out both}
+.phero.plain{background:#fff;height:clamp(180px,17vw,330px)}
+@keyframes rise{from{transform:translateY(14px)}to{transform:none}}
+
+/* HOME */
+.hero{position:relative;height:clamp(240px,30vw,580px);background:url(../img/k31.jpg) center/cover no-repeat;display:grid;place-items:center}
+.hero img{width:clamp(220px,28vw,540px);animation:rise .9s ease-out both}
+.feats{padding-block:34px 36px}
+.feats ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(8,1fr);gap:20px}
+.feats li{display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px;font-size:13px;line-height:1.25;font-weight:500}
+.ic{width:100px;height:100px;border-radius:50%;background:var(--blue);display:grid;place-items:center;color:#fff;transition:transform .3s}
+.feats li:hover .ic{transform:translateY(-4px)}
+.ic svg{width:58px;height:58px}
+.slider{position:relative;overflow:hidden;height:clamp(260px,38vw,737px);background:#222}
+.slider.inset{height:auto;aspect-ratio:1420/758;max-width:var(--wrap);margin-inline:auto}
+.slides{display:flex;height:100%;transition:transform .7s cubic-bezier(.6,.05,.3,1)}
+.slides img{flex:0 0 100%;width:100%;height:100%;object-fit:cover}
+.arrow{position:absolute;top:50%;transform:translateY(-50%);width:clamp(44px,5.2vw,100px);height:clamp(44px,5.2vw,100px);border-radius:50%;background:var(--blue);color:#fff;border:0;display:grid;place-items:center;cursor:pointer;transition:background .2s}
+.arrow:hover{background:#0f5f99}
+.arrow svg{width:40%;height:40%}
+.slider .prev{left:max(16px,calc((100% - var(--wrap))/2 + 60px))}
+.slider .next{right:max(16px,calc((100% - var(--wrap))/2))}
+.slider.inset .arrow,.slider.square .arrow{border-radius:0;width:46px;height:clamp(70px,8vw,150px)}
+.slider.inset .prev,.slider.square .prev{left:0}.slider.inset .next,.slider.square .next{right:0}
+.dots{position:absolute;left:0;right:0;bottom:18px;display:flex;justify-content:center;gap:10px}
+.dots button{width:12px;height:12px;border-radius:50%;border:2px solid #fff;background:transparent;padding:0;cursor:pointer}
+.dots button[aria-current="true"]{background:#fff}
+.cta{background:var(--band)}
+.cta .wrap{display:flex;align-items:center;justify-content:space-between;gap:24px;padding-block:56px;flex-wrap:wrap}
+.cta h2{font-size:clamp(22px,2.5vw,48px);font-weight:600}
+.news{background:var(--soft);padding-block:94px 70px}
+.news-head{display:flex;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-bottom:60px}
+.news-head .h-sec{margin-right:auto}
+.circ{width:53px;height:53px;border-radius:50%;border:2px solid var(--blue);background:transparent;color:var(--blue);display:grid;place-items:center;cursor:pointer;transition:background .2s,color .2s;flex:none}
+.circ:hover{background:var(--blue);color:#fff}
+.circ svg{width:22px;height:22px}
+.news-head .btn{padding:12px 16px}
+.vp{overflow:hidden}
+.track{display:flex;gap:43px;transition:transform .5s ease}
+.card{flex:0 0 calc((100% - 3*43px)/4);background:#fff;border-radius:20px;overflow:hidden;display:flex;flex-direction:column;font-family:var(--f-body);transition:box-shadow .25s,transform .25s}
+.card:hover{box-shadow:0 14px 30px rgba(19,118,188,.14);transform:translateY(-4px)}
+.card img{height:242px;width:100%;object-fit:cover}
+.card .b{padding:14px 22px 18px;display:flex;flex-direction:column;gap:12px;flex:1}
+.date{display:flex;align-items:center;gap:6px;color:var(--muted);font-size:12px}
+.date svg{width:18px;height:18px;color:var(--blue)}
+.card h3{font-family:var(--f-body);font-weight:500;font-size:20px;line-height:1.25}
+.card p{color:var(--muted);font-size:12px;text-align:center;flex:1}
+.more{border-top:1px solid #c9c9c9;padding-top:10px;color:var(--blue);font-weight:500;display:flex;align-items:center;gap:4px}
+.more svg{width:16px;height:16px;transition:transform .2s}
+.card:hover .more svg{transform:translateX(4px)}
+.mat{padding-block:62px 70px}
+.lead{font-size:clamp(15px,1.25vw,24px);text-align:center;font-weight:500;line-height:1.45;max-width:1400px;margin:0 auto}
+.tri{display:grid;grid-template-columns:repeat(3,1fr);gap:48px;margin-top:100px}
+.tri img{width:100%;aspect-ratio:441/378;object-fit:cover;transition:transform .5s}
+.tri figure{margin:0;overflow:hidden}.tri figure:hover img{transform:scale(1.05)}
+.mat .h-sec{text-align:center;margin-block:58px 36px}
+.flex img{width:100%;aspect-ratio:1420/796;object-fit:cover}
+.flex-cap{display:grid;grid-template-columns:1fr 1fr;text-align:center;font-weight:600;font-size:clamp(14px,1.25vw,24px);margin-top:20px}
+.apps{background:var(--band-dark);padding-block:29px 70px;color:#fff}
+.apps h2{text-align:center;font-weight:500;font-size:clamp(16px,1.25vw,24px);margin-bottom:52px}
+.apps-row{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:40px}
+.apps .circ{width:76px;height:76px}
+.apps .track{gap:48px}
+.app{flex:0 0 calc((100% - 3*48px)/4);text-align:center;font-family:var(--f-body);line-height:1.2}
+.app img{width:100%;aspect-ratio:299/256;object-fit:cover;margin-bottom:12px;transition:filter .3s}
+.app:hover img{filter:brightness(1.1)}
+.about{padding-block:54px 90px}
+.about h2{text-align:center;margin-bottom:40px}
+.about p{font-size:clamp(14px,1.05vw,20px);text-align:center;font-weight:500;line-height:1.5;margin:0 auto;max-width:1392px}
+.final{display:grid;grid-template-columns:916fr 1004fr;min-height:341px;overflow:hidden}
+.final{position:relative}
+.final .art{position:absolute;inset:0;right:0;color:var(--blue);pointer-events:none;overflow:hidden}
+.final .art svg{position:absolute;left:max(16px,calc((100vw - var(--wrap))/2));top:50%;transform:translateY(-50%);height:82%;width:auto;max-width:none}
+.final .art .dr{stroke-dasharray:1200;stroke-dashoffset:0;animation:draw 1.6s ease-out both}
+@keyframes draw{from{stroke-dashoffset:1200}}
+.final .panel{position:relative;z-index:1;grid-column:2}
+.final .spacer{grid-column:1}
+.final .panel{background:var(--blue-2);color:#fff;display:flex;flex-direction:column;align-items:flex-end;justify-content:center;gap:22px;padding:48px max(16px,calc((100vw - var(--wrap))/2)) 48px 40px}
+.final .panel h2{font-size:clamp(20px,2vw,36px);font-weight:500;text-align:right;max-width:566px;line-height:1.25}
+
+/* INNER PAGES */
+.sec{padding-block:clamp(40px,4.5vw,86px)}
+.prose{font-family:var(--f-body);font-size:clamp(15px,1.05vw,18px);line-height:1.6;display:grid;gap:18px}
+.prose.c{text-align:center;max-width:1180px;margin-inline:auto}
+.prose ul{margin:0;padding-left:1.2em}
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,5vw,100px);align-items:center}
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:48px 68px;margin-top:40px}
+.tiles a{display:block;overflow:hidden}
+.tiles img{width:100%;aspect-ratio:16/10;object-fit:cover;transition:transform .5s}
+.tiles a:hover img{transform:scale(1.04)}
+.adv-band{background:var(--band)}
+.adv-box{background:#4f8fc7;color:#fff;max-width:825px;padding:clamp(20px,2.5vw,40px) clamp(20px,2vw,36px);font-family:var(--f-body);display:grid;gap:18px}
+.adv-box h3{font-family:var(--f-head);font-weight:400;font-size:clamp(22px,1.9vw,36px);color:#fff}
+.adv-box b{display:block;margin-bottom:8px;font-weight:600}
+.cases{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,4.6vw,90px);margin-top:36px}
+.case img{width:100%;aspect-ratio:413/311;object-fit:cover}
+.case .cap{background:#1576bf;color:#fff;text-align:center;padding:14px 16px;margin-top:12px;font-family:var(--f-body);font-size:15px;display:grid;gap:8px;justify-items:center}
+.dl{display:inline-flex;align-items:center;gap:6px;font-size:14px;color:inherit;background:none;border:0;cursor:pointer;font-family:inherit}
+.dl svg{width:20px;height:20px}
+.dl:hover{text-decoration:underline}
+.contact-line{display:flex;justify-content:center;align-items:center;gap:24px;flex-wrap:wrap;padding-block:56px;font-size:clamp(17px,1.25vw,24px);font-weight:500}
+.contact-line .btn{padding:10px 28px;font-size:16px}
+.tbl-wrap{overflow-x:auto;margin-top:24px}
+table.spec{border-collapse:collapse;width:100%;font-family:var(--f-body);font-size:15px;min-width:640px;text-align:center}
+table.spec th{background:#f1f1f1;font-weight:500;padding:12px}
+table.spec td{padding:12px;border-top:1px solid var(--line)}
+table.spec tr:nth-child(even) td{background:#f7f7f7}
+.bcards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.bcard{border:1.5px solid #1576bf;border-radius:8px;padding:28px 22px;text-align:center;font-family:var(--f-body);transition:box-shadow .25s,transform .25s}
+.bcard:hover{box-shadow:0 10px 26px rgba(19,118,188,.15);transform:translateY(-3px)}
+.bcard h4{font-family:var(--f-body);font-weight:600;font-size:17px;margin-bottom:18px}
+.bcard p{font-size:15px;line-height:1.5}
+.grey-sec{background:var(--grey)}
+.princ{display:grid;grid-template-columns:repeat(4,1fr);gap:30px;margin-top:40px}
+.princ div{text-align:center;display:grid;justify-items:center;gap:14px;font-family:var(--f-body)}
+.princ svg{width:clamp(110px,10vw,180px);height:auto;color:#4a4a4a}
+.princ h4{font-weight:500;font-size:clamp(15px,1.1vw,20px)}
+.princ p{font-size:15px}
+.app-ic{width:130px;margin:0 auto 24px}
+.icgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(30px,4vw,70px) 20px;margin-top:50px}
+.icgrid a{display:grid;justify-items:center;gap:24px;text-align:center;font-weight:500;font-size:clamp(14px,1vw,18px)}
+.icgrid img{width:clamp(110px,10vw,200px);transition:transform .35s}
+.icgrid a:hover img{transform:scale(1.07) rotate(-3deg)}
+.icgrid a:hover{color:var(--blue)}
+/* cases (примеры работ) */
+.pcase{border-bottom:1px solid #bdbdbd;padding-block:50px;display:grid;gap:22px;max-width:1420px}
+.pcase .stage{position:relative;max-width:896px;margin-inline:auto;width:100%}
+.pcase .main{width:100%;aspect-ratio:896/672;object-fit:cover;background:#ddd}
+.pcase .lbl{position:absolute;left:-20px;top:30px;background:var(--blue);color:#fff;font-weight:600;font-size:clamp(15px,1.4vw,26px);padding:10px 22px;max-width:70%;line-height:1.25}
+.thumbs{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;max-width:896px;margin:16px auto 0;position:relative}
+.thumbs button{all:unset;cursor:pointer;aspect-ratio:206/135;overflow:hidden;outline-offset:2px}
+.thumbs img{width:100%;height:100%;object-fit:cover;transition:opacity .2s}
+.thumbs button[aria-pressed="false"] img{opacity:.6}
+.thumbs button:hover img{opacity:1}
+.pcase h3{font-size:clamp(18px,1.4vw,26px);font-weight:600}
+.meta{display:flex;gap:40px;flex-wrap:wrap;font-family:var(--f-body)}
+.meta span{display:flex;align-items:center;gap:14px}
+.meta svg{width:40px;height:40px;color:var(--blue)}
+.pcase .prose{border-top:1px solid #bdbdbd;padding-top:22px}
+/* news list */
+.nlist{display:grid;gap:60px}
+.nrow{display:grid;grid-template-columns:582fr 838fr;background:var(--grey);transition:box-shadow .25s}
+.nrow:hover{box-shadow:0 12px 30px rgba(0,0,0,.08)}
+.nrow img{width:100%;height:100%;aspect-ratio:582/357;object-fit:cover}
+.nrow .t{padding:clamp(20px,4vw,70px);display:flex;flex-direction:column;gap:16px;justify-content:center;font-family:var(--f-body)}
+.nrow .t time{font-size:clamp(14px,1.2vw,24px)}
+.nrow h3{font-weight:500;font-size:clamp(18px,1.7vw,32px)}
+.nrow .lnk{color:var(--blue);font-size:clamp(15px,1.2vw,24px);margin-top:20px}
+.pager{display:flex;justify-content:center;gap:10px;margin-top:60px}
+.pager button{width:50px;height:50px;border-radius:50%;border:0;background:#dcdcdc;font:500 20px var(--f-head);cursor:pointer}
+.pager button[aria-current="true"]{background:var(--blue);color:#fff}
+.ndetail{display:grid;grid-template-columns:minmax(0,1fr) 606px;gap:50px;align-items:start}
+.ndetail h1{font-size:clamp(24px,1.9vw,36px);font-weight:500}
+.ndetail time{display:block;font-family:var(--f-body);font-size:22px;margin-block:22px 30px}
+.ndetail .big{width:100%;aspect-ratio:841/559;object-fit:cover}
+.ngal{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:30px}.ngal img{width:100%;aspect-ratio:16/9;object-fit:cover}
+.side{background:var(--grey);padding:40px 30px;display:grid;gap:40px}
+.side a{display:grid;grid-template-columns:240px 1fr;gap:24px;align-items:center;font-family:var(--f-body)}
+.side img{width:240px;aspect-ratio:3/2;object-fit:cover}
+.side small{display:block;color:var(--muted);margin-bottom:8px}
+.side a:hover b{color:var(--blue)}
+.side b{font-weight:500}
+/* material page */
+.video-band{position:relative;background:url(../img/k13.jpg) center/cover;padding-block:70px}
+.video-band::before{content:"";position:absolute;inset:0;background:rgba(19,118,188,.55)}
+.video-box{position:relative;border:2px solid #fff;max-width:1420px;margin:0 auto;aspect-ratio:1420/479;display:grid;place-items:center;align-content:center;gap:30px;color:#fff;text-align:center;padding:16px}
+.video-box svg{width:clamp(70px,8vw,150px);height:auto;transition:transform .3s}
+.video-box:hover svg{transform:scale(1.08)}
+.video-box h3{font-size:clamp(20px,2.5vw,48px);font-weight:500}
+.blue-sec{background:var(--blue-2);color:#fff}
+.mcards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:40px}
+.mcard{background:#fff;color:var(--ink);font-family:var(--f-body)}
+.mcard img{width:100%;aspect-ratio:460/300;object-fit:cover}
+.mcard button{all:unset;cursor:pointer;display:flex;justify-content:space-between;align-items:center;width:calc(100% - 40px);padding:20px;font-weight:500}
+.mcard button svg{width:26px;height:26px;transition:transform .3s;flex:none}
+.mcard button[aria-expanded="true"] svg{transform:rotate(180deg)}
+.mcard .more-t{padding:0 20px 20px;font-size:15px;color:#333}
+.supply{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;margin-top:30px}
+.supply div{display:grid;grid-template-columns:1fr 1fr;align-items:center;background:#f5f5f5}
+.supply img{width:100%;aspect-ratio:1;object-fit:cover}
+.supply p{background:var(--blue);color:#fff;font-family:var(--f-body);font-size:13px;padding:14px;margin-left:-20px}
+.supply b{display:block;margin-bottom:6px}
+.steps{display:grid;gap:clamp(40px,5vw,100px);margin-top:50px}
+.step{display:grid;grid-template-columns:655fr 700fr;gap:60px;align-items:center}
+.step:nth-child(even) .stxt{order:2}
+.step figure{margin:0;position:relative}
+.step img{width:100%;aspect-ratio:700/544;object-fit:cover}
+.step figure span{position:absolute;right:20px;bottom:20px;width:60px;height:60px;border-radius:50%;background:var(--blue);color:#fff;font:600 26px var(--f-head);display:grid;place-items:center}
+.step:nth-child(even) figure span{right:auto;left:20px}
+.step h4{color:var(--blue);font-weight:500;font-size:clamp(18px,1.25vw,24px);margin-bottom:20px}
+table.cmp{border-collapse:collapse;width:100%;min-width:900px;font-family:var(--f-body);font-size:14px;text-align:center}
+table.cmp th{font-weight:500;padding:10px;font-size:13px;color:#333}
+table.cmp td{padding:12px 8px;border:3px solid #fff}
+table.cmp td:first-child{text-align:left;font-weight:500;background:#fff}
+.g{background:var(--ok)}.y{background:var(--mid)}.r{background:var(--bad)}
+/* demopark */
+.dp-grid{display:grid;grid-template-columns:431fr 1005fr;gap:clamp(24px,4vw,74px);align-items:start}
+.sq{display:grid;grid-template-columns:repeat(4,1fr);gap:30px;margin-top:30px}
+.sq figure{margin:0;display:grid;gap:10px;font-family:var(--f-body);font-size:15px;text-align:center}
+.sq img{width:100%;aspect-ratio:1;object-fit:cover}
+.loc{background:var(--grey)}
+.loc .two{align-items:center}
+.map{aspect-ratio:788/440;background:#dfe9f2;position:relative;overflow:hidden;display:grid;place-items:center}
+.map svg.grid{position:absolute;inset:0;width:100%;height:100%}
+.pin{position:relative;color:var(--blue);display:grid;justify-items:center;gap:6px;font:600 14px var(--f-body)}
+.pin svg{width:70px;height:70px;animation:bob 2.4s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-8px)}}
+/* forms */
+.form{display:grid;grid-template-columns:1fr 1fr;gap:16px 20px;font-family:var(--f-body)}
+.form input,.form textarea{width:100%;border:1px solid #bdbdbd;border-radius:40px;padding:18px 26px;font:inherit;font-size:17px;background:#fff;color:var(--ink)}
+.form textarea{border-radius:24px;resize:vertical;min-height:120px}
+.form input:focus,.form textarea:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(19,118,188,.15)}
+.form .full{grid-column:1/-1}
+.file{display:flex;align-items:center;gap:8px;cursor:pointer;font-weight:500;text-decoration:underline}
+.file svg{width:26px;height:26px;color:var(--blue)}
+.file input{display:none}
+.hint{font-size:13px;color:#333}
+.captcha{border:1px solid #e9dede;background:#fff8f8;padding:12px 14px;display:flex;gap:12px;align-items:flex-start;font-size:15px;cursor:pointer;user-select:none}
+.captcha .box{width:22px;height:22px;border:1.5px solid #999;border-radius:4px;display:grid;place-items:center;flex:none;margin-top:2px}
+.captcha.ok .box{background:var(--blue);border-color:var(--blue);color:#fff}
+.captcha small{display:block;font-size:11px;color:#777}
+.agree{display:flex;gap:8px;align-items:center;font-size:13px}
+.agree a{color:var(--blue);text-decoration:underline}
+.okmsg{color:var(--blue);font-weight:600}
+.contacts{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,5vw,100px)}
+.office{display:grid;gap:20px;font-family:var(--f-body);font-size:17px;margin-bottom:40px}
+.office h3{font-size:clamp(20px,1.6vw,30px);font-weight:600;margin-bottom:8px}
+.office span{display:flex;gap:14px;align-items:center}
+.office svg{width:28px;height:28px;flex:none}
+.req-box{background:var(--grey);padding:clamp(24px,4vw,60px)}
+/* media */
+.brochures{display:grid;grid-template-columns:repeat(4,1fr);gap:50px}
+.broch img{width:100%;aspect-ratio:319/460;object-fit:cover;box-shadow:0 4px 16px rgba(0,0,0,.12);transition:transform .3s}
+.broch:hover img{transform:translateY(-4px)}
+.broch .cap{background:#1576bf;color:#fff;text-align:center;padding:16px;margin-top:12px;font-family:var(--f-body);display:grid;gap:10px;justify-items:center;min-height:110px;align-content:center}
+.lays{display:grid;grid-template-columns:repeat(4,1fr);gap:20px 20px}
+.lay img{width:100%;aspect-ratio:340/182;object-fit:cover}
+.lay .cap{background:#1576bf;color:#fff;text-align:center;padding:12px;margin-top:22px;font-family:var(--f-body);font-size:15px;display:grid;gap:6px;justify-items:center}
+.policy h2{font-size:clamp(18px,1.3vw,24px);font-weight:600;margin-top:16px}
+/* footer */
+footer{padding-block:40px;font-size:14px;border-top:1px solid var(--line)}
+footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+footer .links{display:flex;gap:10px;color:var(--blue)}
+footer .links a:hover{text-decoration:underline}
+/* reveal */
+.rv{transition:transform .8s ease,opacity .8s ease}
+.rv.pre{transform:translateY(24px);opacity:.001}
+#view{animation:fade .45s ease both}
+@keyframes fade{from{opacity:.4}to{opacity:1}}
+/* modal / toast */
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:100;display:grid;place-items:center;padding:16px;overflow:auto}
+.modal .in{background:#fff;max-width:900px;width:100%;padding:clamp(20px,3vw,44px);position:relative}
+.modal .x{position:absolute;right:14px;top:8px;background:none;border:0;font-size:34px;cursor:pointer;line-height:1}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:#222;color:#fff;padding:12px 20px;border-radius:30px;z-index:120;font-family:var(--f-body);font-size:14px}
+
+@media (max-width:1280px){nav.main{font-size:13px;gap:12px}.logo img{height:56px}}
+@media (max-width:1100px){
+  .burger{display:block}
+  nav.main{display:none;position:absolute;left:0;right:0;top:100%;background:#fff;flex-direction:column;gap:0;padding:8px 16px 16px;box-shadow:0 10px 20px rgba(0,0,0,.08);font-size:16px}
+  nav.main.open{display:flex}
+  nav.main a{padding:10px 0;border-bottom:1px solid var(--line)}
+  .feats ul{grid-template-columns:repeat(4,1fr);row-gap:30px}
+  .card{flex-basis:calc((100% - 43px)/2)}
+  .app{flex-basis:calc((100% - 48px)/2)}
+  .ndetail{grid-template-columns:1fr}
+  .brochures,.lays{grid-template-columns:repeat(2,1fr)}
+  .princ{grid-template-columns:repeat(2,1fr)}
+  .supply{grid-template-columns:1fr}
+  .dp-grid{grid-template-columns:1fr}
+}
+@media (max-width:760px){
+  .top{flex-wrap:wrap;gap:10px 16px;font-size:13px;justify-content:flex-start}
+  .top .mail{display:none}
+  .ic{width:72px;height:72px}.ic svg{width:40px;height:40px}
+  .feats ul{grid-template-columns:repeat(2,1fr)}
+  .card,.app{flex-basis:100%}
+  .apps-row{gap:10px}.apps .circ{width:44px;height:44px}
+  .tri,.tiles,.two,.cases,.bcards,.mcards,.contacts,.form,.step,.nrow,.icgrid{grid-template-columns:1fr}
+  .icgrid{grid-template-columns:1fr 1fr}
+  .step:nth-child(even) .stxt{order:0}
+  .tri{gap:16px;margin-top:40px}
+  .final{grid-template-columns:1fr}.final .art{display:none}
+  .final .panel{align-items:stretch;padding:40px 16px}.final .panel h2{text-align:left}
+  .news{padding-block:56px}
+  .side a{grid-template-columns:120px 1fr}.side img{width:120px}
+  .sq{grid-template-columns:1fr 1fr}
+  .pcase .lbl{left:0}
+  .thumbs{gap:8px}
+  .brochures{gap:24px}
+  .subnav .wrap{font-size:13px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}.rv.pre{transform:none;opacity:1}html{scroll-behavior:auto}}
+/* ===== MODERN LAYER ===== */
+:root{--ink:#0f1b2a;--soft:#f3f6fa;--mute:#5b6b7c;--r:16px;--shadow:0 10px 30px rgba(15,27,42,.07);--shadow-h:0 20px 48px rgba(15,27,42,.14)}
+body{font-family:var(--f-body);color:var(--ink)}
+.h-sec,.h2,.h3,h1,h2,h3{letter-spacing:-.02em}
+.h-sec{font-weight:700}
+.btn{border-radius:999px;background:var(--blue);color:#fff;border-color:var(--blue);text-transform:none;letter-spacing:.01em;font-weight:600;padding:13px 26px;transition:background .25s,color .25s,transform .25s,box-shadow .25s}
+.btn:hover,.btn:focus-visible{background:#0f5f99;border-color:#0f5f99;color:#fff;transform:translateY(-1px);box-shadow:0 8px 20px rgba(19,118,188,.3)}
+.btn.light{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.65);color:#fff;backdrop-filter:blur(6px)}
+.btn.light:hover,.btn.light:focus-visible{background:#fff;border-color:#fff;color:var(--ink)}
+.btn.big{font-size:17px;padding:17px 32px;min-width:0}
+.btn.white{background:#fff;color:var(--blue);border-color:#fff}
+.btn.white:hover{background:#e8f2fb;color:var(--blue);border-color:#e8f2fb}
+
+/* header */
+header{transition:background .3s,box-shadow .3s}
+body.at-top header{background:transparent;box-shadow:none}
+body.at-top .top,body.at-top .top .c,body.at-top .yt,body.at-top .burger{color:#fff}
+body.at-top .yt path{fill:var(--ink)}
+body.at-top .logo .lg-c{display:none}body.at-top .logo .lg-w{display:block}
+body.at-top .lang{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.7)}
+body.at-top .lang::before{background:#fff}
+body.at-top .lang a{color:#fff}
+body.at-top .lang a[aria-pressed="true"]{color:var(--blue)}
+@media (min-width:1101px){body.at-top nav.main a{color:#fff}body.at-top nav.main a::after{background:#fff}}
+
+/* inner heroes */
+.phero{display:flex;align-items:flex-end;justify-content:flex-start;height:clamp(260px,28vw,460px);padding:0 max(16px,calc((100% - var(--wrap))/2)) clamp(28px,4vw,56px)}
+.phero::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,27,42,.1),rgba(15,27,42,.78))}
+.phero .tbox{position:relative;background:none!important;padding:0;min-width:0;text-align:left;font-size:clamp(34px,4.6vw,76px);font-weight:700;letter-spacing:-.03em;line-height:1.02;color:#fff;max-width:16ch}
+.phero .tbox::before{content:"Concrete Canvas Central Asia";display:block;font:600 12px var(--f-body);letter-spacing:.16em;text-transform:uppercase;color:#9fd0ff;margin-bottom:14px}
+.phero.plain{background:radial-gradient(120% 140% at 85% 0%,#1d6fb3 0%,#123a63 45%,var(--ink) 100%)!important;height:clamp(220px,20vw,340px)}
+.phero.plain::before{background:none}
+.hero::before{content:"";position:absolute;inset:0;background:rgba(15,27,42,.3)}
+.hero img{position:relative;border-radius:14px}
+
+/* subnav → pill tabs */
+.subnav{background:#fff;color:var(--ink);border-bottom:1px solid var(--line);position:sticky;top:calc(env(safe-area-inset-top,0px) + var(--hh,0px));z-index:40}
+.subnav .wrap{justify-content:flex-start;gap:8px;padding-block:12px;overflow-x:auto;flex-wrap:nowrap;scrollbar-width:none}
+.subnav .wrap::-webkit-scrollbar{display:none}
+.subnav a,.subnav button{border:0!important;padding:9px 16px;border-radius:999px;background:var(--soft);font-weight:500;font-size:14px;white-space:nowrap;line-height:1.2;transition:background .2s,color .2s}
+.subnav a:hover,.subnav button:hover{background:#e1ecf7;text-decoration:none}
+.subnav a.on{background:var(--blue);color:#fff;text-decoration:none}
+
+/* rounding + surfaces */
+.tiles a,.tri figure,.case img,.step img,.broch img,.lay img,.pcase .main,.thumbs button,.side img,.ngal img,.mcard,.card,.supply div,.sq img,.map,.two>img,.dp-grid img,.big,.flex img,.nrow{border-radius:var(--r)}
+.slider.inset{border-radius:20px}
+.tbl-wrap{border-radius:var(--r);border:1px solid var(--line)}
+table.spec th{background:var(--ink);color:#fff}
+.case .cap,.broch .cap,.lay .cap{background:none;color:var(--ink);text-align:left;justify-items:start;padding:14px 2px 0;margin-top:0;font-weight:500;min-height:0;align-content:start}
+.dl{color:var(--blue);font-weight:600}
+.adv-band{background:var(--soft);padding-block:clamp(40px,5vw,80px)}
+.adv-box{background:var(--ink);border-radius:24px;max-width:none;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:28px;padding:clamp(24px,4vw,56px)}
+.adv-box h3{grid-column:1/-1;font-family:var(--f-head);font-weight:700;font-size:clamp(26px,2.6vw,42px)}
+.adv-box p{color:#b9c8d8;border-top:2px solid var(--blue);padding-top:16px}
+.adv-box b{color:#fff;font-family:var(--f-head);font-size:18px}
+.bcard{border:0;background:var(--soft);border-radius:var(--r);text-align:left;padding:30px}
+.bcard h4{font-family:var(--f-head);font-size:19px;font-weight:700}
+.bcard p{color:var(--mute)}
+.bcard:hover{background:#fff;box-shadow:var(--shadow-h)}
+.grey-sec{background:var(--soft)}
+.princ div{background:#fff;border-radius:var(--r);padding:30px 20px;box-shadow:var(--shadow)}
+.princ svg{width:104px;color:var(--blue)}
+.icgrid a{background:var(--soft);border-radius:var(--r);padding:34px 16px;transition:background .3s,box-shadow .3s,transform .3s}
+.icgrid a:hover{background:#fff;box-shadow:var(--shadow-h);transform:translateY(-3px)}
+.icgrid img{width:clamp(90px,8vw,140px);mix-blend-mode:multiply}
+.icgrid a:hover img{transform:none}
+.contact-line{background:var(--ink);color:#fff;border-radius:24px;width:min(var(--wrap),calc(100% - 32px));margin:40px auto 80px;padding:clamp(28px,4vw,48px)!important;justify-content:space-between}
+.nrow{background:#fff;box-shadow:var(--shadow);overflow:hidden;transition:box-shadow .3s,transform .3s}
+.nrow:hover{box-shadow:var(--shadow-h);transform:translateY(-2px)}
+.nrow img{border-radius:0}
+.side{border-radius:var(--r);background:var(--soft)}
+.pcase{border:0;background:#fff;border-radius:24px;box-shadow:var(--shadow);padding:clamp(20px,3vw,40px);margin-block:28px}
+.pcase .lbl{left:16px;top:16px;border-radius:999px;font-size:clamp(13px,1vw,16px);padding:8px 18px}
+.pcase .prose{border-top:1px solid var(--line)}
+.blue-sec{background:var(--ink)}
+.video-band::before{background:linear-gradient(180deg,rgba(15,27,42,.35),rgba(15,27,42,.8))}
+.video-box{border:0!important;border-radius:24px;background:rgba(255,255,255,.06)!important}
+.form input,.form textarea{border-radius:12px;background:var(--soft);border-color:transparent}
+.form input:focus,.form textarea:focus{background:#fff}
+.contacts{align-items:start}
+.contacts>div{display:flex;flex-direction:column;min-width:0}
+.ctitle{font-size:clamp(20px,1.6vw,30px);font-weight:600;line-height:1.25;margin:0 0 24px;text-wrap:balance;min-height:2.5em;display:flex;align-items:flex-end}
+.ocard{background:var(--soft);border-radius:12px;padding:24px 26px;margin:0;gap:18px}
+.ocard a,.ocard span{display:flex;gap:14px;align-items:center}
+.ophoto{margin-top:20px;width:100%;flex:1;min-height:240px;max-height:420px;object-fit:cover;border-radius:12px}
+.form .fattach{display:grid;gap:8px;align-content:start}
+.form .captcha{background:var(--soft);border:1px solid transparent;border-radius:12px;padding:0 22px;min-height:60px;align-items:center;align-self:start}
+.form .captcha .box{margin-top:0;background:#fff}
+.form .captcha.ok .box{background:var(--blue)}
+.fsend{display:flex;align-items:center;gap:16px 24px;flex-wrap:wrap;margin-top:4px}
+.fsend .hint{display:flex;gap:8px;align-items:center;color:#555;margin:0}
+.form .agree{justify-content:flex-start;gap:0;display:block;font-size:13px;color:#555}
+.form .agree input{width:18px;height:18px;padding:0;margin:0 10px 0 0;vertical-align:-4px;border-radius:4px;accent-color:var(--blue)}
+.fsend .hint svg{width:18px;height:18px;flex:none;color:var(--blue)}
+.req-box,.modal .in{border-radius:24px}
+.supply p{border-radius:12px}
+.card{box-shadow:var(--shadow)}
+.card p{text-align:left}
+.circ{border-color:var(--line);color:var(--ink);background:#fff}
+.circ:hover{background:var(--blue);border-color:var(--blue);color:#fff}
+
+/* ===== HOME ===== */
+.eyebrow{font:600 12px/1 var(--f-body);letter-spacing:.16em;text-transform:uppercase;color:#9fd0ff;margin:0 0 18px}
+.eyebrow.dark{color:var(--blue)}
+.xh{font-family:var(--f-head);font-size:clamp(30px,3.6vw,56px);font-weight:700;letter-spacing:-.03em;line-height:1.08;max-width:20ch}
+.xh.light{color:#fff}
+.xsec{padding-block:clamp(64px,8vw,120px)}
+.xsec.soft{background:var(--soft)}
+.xdark{background:var(--ink);color:#b9c8d8;padding-block:clamp(64px,8vw,120px)}
+.xhead{margin-bottom:clamp(32px,4vw,56px)}
+.xhead.row{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap}
+.xnav{display:flex;gap:10px;align-items:center}
+.xlink{color:var(--blue);font-weight:600;white-space:nowrap}
+.xlink:hover{text-decoration:underline;text-underline-offset:4px}
+.xbtns{display:flex;gap:12px;flex-wrap:wrap;margin-top:34px}
+
+.xhero{position:relative;overflow:hidden;color:#fff;margin-top:calc(-1 * var(--hh,0px));padding-top:calc(var(--hh,0px) + clamp(70px,10vw,150px));padding-bottom:clamp(28px,4vw,48px)}
+.xhero-bg{position:absolute;inset:0;background:center/cover no-repeat;animation:kb 16s ease-out both}
+@keyframes kb{from{transform:scale(1.1)}}
+.xhero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(15,27,42,.88) 0%,rgba(15,27,42,.5) 55%,rgba(15,27,42,.15) 100%),linear-gradient(0deg,rgba(15,27,42,.65),transparent 45%)}
+.xhero-in{position:relative;z-index:1}
+.xhero h1{font-family:var(--f-head);font-size:clamp(52px,8.4vw,128px);font-weight:700;line-height:.94;letter-spacing:-.045em;animation:up .9s ease-out both}
+.xhero h1 em{font-style:normal;color:#9fd0ff}
+.lead-x{color:#dbe7f3;font-size:clamp(16px,1.35vw,20px);max-width:44ch;margin-top:24px;animation:up .9s .12s ease-out both}
+.xhero .xbtns{animation:up .9s .22s ease-out both}
+@keyframes up{from{transform:translateY(18px)}}
+.xstats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;margin-top:clamp(56px,8vw,110px);background:rgba(255,255,255,.16);border-radius:20px;overflow:hidden;backdrop-filter:blur(12px)}
+.xstats div{background:rgba(15,27,42,.42);padding:22px 24px}
+.xstats b{display:block;font:700 clamp(26px,2.6vw,40px)/1.1 var(--f-head);color:#fff;letter-spacing:-.02em}
+.xstats span{color:#c4d3e2;font-size:14px}
+
+.xfeat{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.xfeat li{background:var(--soft);border-radius:var(--r);padding:26px;display:grid;gap:10px;align-content:start;transition:background .3s,box-shadow .3s,transform .3s}
+.xfeat li:hover{background:#fff;box-shadow:var(--shadow-h);transform:translateY(-3px)}
+.xfeat .ic{width:52px;height:52px;border-radius:14px;margin-bottom:6px}
+.xfeat .ic svg{width:30px;height:30px}
+.xfeat b{font:700 17px/1.25 var(--f-head);color:var(--ink)}
+.xfeat span:not(.ic){color:var(--mute);font-size:14.5px;line-height:1.5}
+
+.xprods{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.xprod{background:#fff;border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column;transition:box-shadow .3s,transform .3s}
+.xprod figure{margin:0;overflow:hidden}
+.xprod img{aspect-ratio:16/10;object-fit:cover;width:100%;transition:transform .6s}
+.xprod:hover{box-shadow:var(--shadow-h);transform:translateY(-4px)}
+.xprod:hover img{transform:scale(1.05)}
+.xprod>div{padding:22px;display:grid;gap:8px;flex:1;align-content:start}
+.xprod h3{font:700 22px var(--f-head)}
+.xprod p{color:var(--mute);font-size:15px}
+.xmore{color:var(--blue);font-weight:600;font-size:14px;margin-top:auto;padding-top:8px}
+
+.xba-grid,.xflex,.xabout{display:grid;grid-template-columns:5fr 7fr;gap:clamp(28px,5vw,80px);align-items:center}
+.xba-grid p{color:var(--mute);font-size:17px;margin-top:18px;max-width:46ch}
+.xba-hint{display:inline-flex;gap:8px;align-items:center;font-weight:600;color:var(--blue)!important;font-size:14px!important}
+.xba{position:relative;aspect-ratio:16/10;border-radius:20px;overflow:hidden;user-select:none;box-shadow:var(--shadow-h)}
+.xba img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;max-width:none}
+.xba-before{position:absolute;inset:0;clip-path:inset(0 calc(100% - var(--p)) 0 0)}
+.xba-line{position:absolute;top:0;bottom:0;left:var(--p);width:3px;margin-left:-1.5px;background:#fff;pointer-events:none}
+.xba-line span{position:absolute;top:50%;left:50%;width:48px;height:48px;transform:translate(-50%,-50%);border-radius:50%;background:#fff;color:var(--blue);display:grid;place-items:center;box-shadow:var(--shadow-h)}
+.xba-line svg{width:24px;height:24px}
+.xba input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;margin:0}
+.xba-tag{position:absolute;top:16px;padding:6px 14px;border-radius:999px;background:rgba(15,27,42,.72);color:#fff;font-size:13px;font-weight:600;pointer-events:none}
+.xba-tag.l{left:16px}.xba-tag.r{right:16px}
+
+.xflex p{margin-top:18px;font-size:17px;max-width:48ch}
+.xchk{list-style:none;padding:0;margin:26px 0 0;display:grid;gap:12px}
+.xchk li{display:flex;gap:12px;align-items:center;color:#fff}
+.xchk li::before{content:"✓";width:24px;height:24px;flex:none;border-radius:50%;background:var(--blue);display:grid;place-items:center;font-size:13px;font-weight:700}
+.xflex figure{margin:0}
+.xflex img{border-radius:20px;width:100%}
+.xflex figcaption{display:grid;grid-template-columns:1fr 1fr;text-align:center;margin-top:14px;color:#fff;font-weight:600;font-size:15px}
+
+.xrail{display:grid;grid-auto-flow:column;grid-auto-columns:calc((100% - 3*20px)/3.4);gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-bottom:4px;scroll-behavior:smooth}
+.xrail::-webkit-scrollbar{display:none}
+.xapp{scroll-snap-align:start;position:relative;border-radius:var(--r);overflow:hidden;aspect-ratio:3/4;color:#fff;display:flex;flex-direction:column;justify-content:flex-end;padding:24px}
+.xapp img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .7s}
+.xapp::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(15,27,42,.88),rgba(15,27,42,0) 62%)}
+.xapp b,.xapp small{position:relative;z-index:1}
+.xapp b{font:700 clamp(19px,1.6vw,24px)/1.2 var(--f-head)}
+.xapp small{color:#9fd0ff;font-weight:600;margin-top:8px;font-size:14px}
+.xapp:hover img{transform:scale(1.06)}
+
+.xcases{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.xcase{background:#fff;border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow);transition:box-shadow .3s,transform .3s;display:flex;flex-direction:column}
+.xcase:hover{box-shadow:var(--shadow-h);transform:translateY(-4px)}
+.xcase img{aspect-ratio:16/10;object-fit:cover;width:100%}
+.xcase>div{padding:22px;display:grid;gap:10px}
+.tags{display:flex;gap:6px;flex-wrap:wrap}
+.tags span{background:var(--soft);border-radius:999px;padding:4px 11px;font-size:12.5px;color:#3d4c5c;font-weight:500}
+.xcase h3{font:700 19px/1.3 var(--f-head)}
+.xcase small{color:var(--mute);font-size:14px}
+
+.xbig{font:500 clamp(20px,1.8vw,28px)/1.4 var(--f-head);color:#fff;letter-spacing:-.01em}
+.xabout p+p{margin-top:18px}
+.xabout{align-items:start}
+.xmini{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:40px}
+.xmini div{border-top:2px solid var(--blue);padding-top:14px}
+.xmini b{display:block;font:700 clamp(28px,2.4vw,38px) var(--f-head);color:#fff}
+.xmini span{font-size:14px}
+
+.xcta{position:relative;overflow:hidden;border-radius:28px;background:linear-gradient(120deg,#1576bf 0%,#0f3f6e 100%);color:#fff;padding:clamp(32px,5vw,72px);display:grid;grid-template-columns:7fr 5fr;gap:30px;align-items:center}
+.xcta h2{font:700 clamp(28px,3vw,48px)/1.1 var(--f-head);letter-spacing:-.025em}
+.xcta p{color:#d6e6f5;margin-top:14px;max-width:44ch;font-size:17px}
+.xcta svg{width:100%;height:auto;color:#fff}
+.xcta .dr{stroke-dasharray:1200;animation:draw 1.8s ease-out both}
+
+/* footer */
+footer.ft{border:0;background:var(--ink);color:#93a6ba;padding-block:64px 28px;font-size:15px}
+.ft .ft-grid{display:grid!important;grid-template-columns:2fr 1fr 1fr 1.4fr;gap:40px}
+.ft-grid>div{display:flex;flex-direction:column;gap:10px;align-items:flex-start}
+.ft-brand img{height:64px;width:auto;margin-bottom:8px}
+.ft-brand p{max-width:34ch}
+.ft h4{color:#fff;font:600 15px var(--f-head);margin-bottom:6px}
+.ft a:hover{color:#fff}
+.ft .ft-bot{margin-top:48px;padding-top:24px;border-top:1px solid rgba(255,255,255,.1);font-size:13px}
+.ft .links{color:#93a6ba}
+
+@media (max-width:1100px){
+  .xfeat,.xprods{grid-template-columns:repeat(2,1fr)}
+  .xcases{grid-template-columns:1fr 1fr}
+  .xba-grid,.xflex,.xabout,.xcta{grid-template-columns:1fr}
+  .xcta svg{max-width:420px}
+  .xrail{grid-auto-columns:calc((100% - 20px)/2.2)}
+  .ft .ft-grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:760px){
+  .xstats{grid-template-columns:1fr 1fr}
+  .xfeat{grid-template-columns:1fr 1fr;gap:10px}
+  .xfeat li{padding:18px}
+  .xprods,.xcases{grid-template-columns:1fr}
+  .xrail{grid-auto-columns:78%}
+  .xmini{grid-template-columns:1fr 1fr 1fr;gap:12px}
+  .ft .ft-grid{grid-template-columns:1fr}
+}
+
+.xfeat li,.xprod,.xcase,.xapp{min-width:0}
+.xfeat b{overflow-wrap:break-word;hyphens:auto}
+@media (max-width:520px){.xfeat{grid-template-columns:1fr}.xfeat li{grid-template-columns:52px 1fr;column-gap:14px;row-gap:4px}.xfeat .ic{grid-row:span 2;margin:0}.top .lang a{padding:5px 9px}}
+.ico{display:block;width:clamp(96px,8.5vw,140px);height:auto;color:var(--blue);overflow:visible;transition:transform .4s cubic-bezier(.3,1.4,.5,1)}
+.ico .disc{fill:var(--disc,#e6f0fa)}
+.ico .ring{fill:none;stroke:currentColor;stroke-width:1.6;opacity:.35}
+.ico path,.ico rect{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+.ico .b{stroke-width:4.2}
+.ico .t{stroke-width:2.4}
+.ico .h{stroke-width:1.6;opacity:.45}
+.ico .f{fill:currentColor;fill-opacity:.16;stroke:none}
+.ico .f.s{fill-opacity:1;stroke:none}
+.ico .o{opacity:.3}
+.ico .x{stroke:#e2544a;stroke-width:3}
+.icgrid{--disc:#fff}
+.icgrid a:hover .ico{transform:scale(1.08) rotate(-4deg)}
+.ico.app-ic{width:120px;margin:0 auto 24px}
+/* ===== MOTION ===== */
+.rv{transition:transform .9s cubic-bezier(.2,.7,.2,1) calc(var(--d,0) * 90ms),opacity .9s ease calc(var(--d,0) * 90ms)}
+.rv.pre{transform:translateY(36px);opacity:.001}
+#view{animation:pagein .55s cubic-bezier(.2,.7,.2,1) both}
+@keyframes pagein{from{opacity:.2;transform:translateY(12px)}}
+.btn{position:relative;overflow:hidden;isolation:isolate}
+.btn::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(110deg,transparent 25%,rgba(255,255,255,.38) 50%,transparent 75%);transform:translateX(-130%);transition:transform .75s ease}
+.btn:hover::after{transform:translateX(130%)}
+#prog{position:absolute;left:0;bottom:-1px;height:2px;width:100%;background:var(--blue);transform-origin:0 50%;transform:scaleX(var(--sp,0));pointer-events:none}
+body.at-top #prog{background:#fff}
+.xhero-bg{will-change:transform}
+.ico.pre-draw path:not(.f),.ico.pre-draw rect:not(.f){stroke-dasharray:1;stroke-dashoffset:1}
+.ico.pre-draw .f{opacity:0}
+.ico.draw path:not(.f),.ico.draw rect:not(.f){stroke-dasharray:1;animation:dash 1.1s cubic-bezier(.6,0,.2,1) both}
+.ico.draw .f{animation:fin .7s .45s ease both}
+@keyframes dash{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+@keyframes fin{from{opacity:0}}
+.xticker{background:var(--blue);color:#fff;overflow:hidden;white-space:nowrap;padding-block:16px;font:600 clamp(15px,1.3vw,19px) var(--f-head)}
+.xt-track{display:inline-flex;animation:tick 38s linear infinite}
+.xt-track span{display:inline-flex;align-items:center;gap:28px;padding-right:28px}
+.xt-track span::after{content:"";width:8px;height:8px;border-radius:50%;background:#9fd0ff}
+.xticker:hover .xt-track{animation-play-state:paused}
+@keyframes tick{to{transform:translateX(-50%)}}
+.xstats b,.xmini b{font-variant-numeric:tabular-nums}
+.xprod,.xcase{transform-style:preserve-3d}
+.xapp b{transition:transform .4s}.xapp:hover b{transform:translateY(-4px)}
+.xfeat li:hover .ic{animation:pop .5s cubic-bezier(.3,1.6,.5,1)}
+@keyframes pop{50%{transform:scale(1.15) rotate(-6deg)}}
+@media (prefers-reduced-motion:reduce){.xt-track{animation:none}.ico.pre-draw path,.ico.pre-draw rect{stroke-dashoffset:0}.ico.pre-draw .f{opacity:1}}
+.xsplit{position:relative;border-radius:20px;overflow:hidden}
+.xsplit img{border-radius:0!important}
+.xsplit::after{content:"";position:absolute;top:0;bottom:0;left:50%;width:6px;margin-left:-3px;background:var(--ink);box-shadow:0 0 0 1px rgba(255,255,255,.15)}
+.xsplit .vs{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:1;width:54px;height:54px;border-radius:50%;background:var(--blue);color:#fff;display:grid;place-items:center;font:700 16px var(--f-head);letter-spacing:.04em;border:4px solid var(--ink);box-shadow:0 8px 24px rgba(0,0,0,.35)}
+.xflex figcaption span:first-child{color:#9fd0ff}
+/* header grid: логотип по центру слева на всю высоту шапки */
+header>.wrap{display:grid;grid-template-columns:auto 1fr;grid-template-rows:auto auto;column-gap:40px;align-items:center;padding-block:14px}
+header .top{grid-column:2;grid-row:1;padding-top:0}
+header .bar{display:contents}
+header .logo{grid-column:1;grid-row:1/3;align-self:center}
+header nav.main{grid-column:2;grid-row:2;justify-self:end;margin-top:12px}
+header .burger{grid-column:2;grid-row:2;justify-self:end}
+.logo img{height:74px}
+@media (max-width:1280px){.logo img{height:62px}}
+@media (max-width:1100px){header nav.main{margin-top:0}}
+@media (max-width:760px){header>.wrap{grid-template-columns:auto 1fr auto;grid-template-rows:auto;column-gap:10px;padding-block:10px}.logo img{height:48px}header .logo{grid-row:1}header .top{grid-column:2;grid-row:1;flex-wrap:nowrap;justify-content:flex-end}header .top .c,header .top .yt{display:none}header .burger{grid-column:3;grid-row:1;padding:4px}header nav.main{grid-column:1/-1}}
+@media (max-width:360px){.logo img{height:40px}.lang a{padding:5px 7px}}
+@media (max-width:1100px){header>.wrap{position:relative}header nav.main{justify-self:stretch;left:0;right:0;width:auto;grid-column:1/-1}}
+.ccxv{background:#fff;padding-block:clamp(48px,6vw,96px)}
+.ccxv.grey{background:var(--soft)}
+.ccxv-in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,5vw,90px);align-items:center}
+.ccxv-t h2{font:700 clamp(34px,4vw,64px)/1.05 var(--f-head);letter-spacing:-.03em;margin-bottom:24px}
+.ccxv-t p{font-size:clamp(16px,1.2vw,19px);line-height:1.85;color:#3d4c5c;max-width:60ch}
+.ccxv-t b{color:var(--ink);font-weight:700}
+.ccxv-f{margin:0}.ccxv-f img{width:100%;height:auto;mix-blend-mode:multiply}
+@media (max-width:860px){.ccxv-in{grid-template-columns:1fr}.ccxv-in.rev .ccxv-f{order:2}}
+/* плавное раскрытие карточек «Преимущества материала» */
+.mcards{align-items:start}
+.mcard{transition:box-shadow .4s ease}
+.mcard:has(button[aria-expanded="true"]){box-shadow:0 18px 40px rgba(0,0,0,.25)}
+.mcard .acc{display:grid;grid-template-rows:0fr;transition:grid-template-rows .5s cubic-bezier(.22,.8,.24,1)}
+.mcard .acc>.more-t{min-height:0;overflow:hidden;opacity:0;transform:translateY(-8px);padding-bottom:0;transition:opacity .35s ease,transform .5s cubic-bezier(.22,.8,.24,1),padding-bottom .5s cubic-bezier(.22,.8,.24,1)}
+.mcard button[aria-expanded="true"]+.acc{grid-template-rows:1fr}
+.mcard button[aria-expanded="true"]+.acc>.more-t{opacity:1;transform:none;padding-bottom:20px;transition-delay:0s,.05s,0s}
+.mcard button svg{transition:transform .5s cubic-bezier(.34,1.4,.5,1)}
+.mcard button:hover svg{color:var(--blue)}
+@media (prefers-reduced-motion:reduce){.mcard .acc,.mcard .acc>.more-t{transition:none}}
+
+/* ===== mobile & tablet v2 ===== */
+.hwa{display:none}
+.burger{width:44px;height:44px;border-radius:50%;padding:0;margin:0;place-items:center;position:relative;background:var(--soft);color:var(--ink);transition:background .3s,color .3s}
+.burger span{position:absolute;left:13px;right:13px;top:50%;height:2px;margin-top:-1px;border-radius:2px;background:currentColor;transition:transform .4s cubic-bezier(.7,0,.2,1),opacity .2s}
+.burger span:nth-child(1){transform:translateY(-6px)}
+.burger span:nth-child(3){transform:translateY(6px)}
+body.menu-open .burger span:nth-child(1){transform:rotate(45deg)}
+body.menu-open .burger span:nth-child(2){opacity:0;transform:scaleX(.2)}
+body.menu-open .burger span:nth-child(3){transform:rotate(-45deg)}
+body.at-top .burger,body.menu-open .burger,body.at-top .hwa,body.menu-open .hwa{background:rgba(255,255,255,.14);color:#fff;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+body.menu-open{overflow:hidden}
+body.menu-open header{background:rgba(15,27,42,.9)!important;-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);box-shadow:0 1px 0 rgba(255,255,255,.08)!important;transition:background .3s .15s}
+body.menu-open .logo .lg-c{display:none}body.menu-open .logo .lg-w{display:block}
+body.menu-open #prog{opacity:0}
+.mnav{position:fixed;inset:0;z-index:45;color:#fff;overflow-y:auto;overscroll-behavior:contain;background:radial-gradient(90% 50% at 100% 0%,rgba(19,118,188,.45),transparent 70%),radial-gradient(70% 40% at 0% 100%,rgba(19,118,188,.22),transparent 70%),var(--ink);padding:calc(var(--hh,72px) + 8px) max(20px,env(safe-area-inset-right,0px)) calc(24px + env(safe-area-inset-bottom,0px)) max(20px,env(safe-area-inset-left,0px));visibility:hidden;clip-path:circle(0 at calc(100% - 42px) 38px);transition:clip-path .55s cubic-bezier(.7,0,.2,1),visibility 0s .55s}
+body.menu-open .mnav{visibility:visible;clip-path:circle(160% at calc(100% - 42px) 38px);transition:clip-path .6s cubic-bezier(.7,0,.2,1)}
+.mnav-in{max-width:640px;margin:0 auto;min-height:100%;display:flex;flex-direction:column;gap:26px}
+.mnav-links{display:flex;flex-direction:column;counter-reset:m}
+.mnav-links a{display:grid;grid-template-columns:38px 1fr auto;align-items:center;padding:15px 0;border-bottom:1px solid rgba(255,255,255,.1);font:600 clamp(24px,6.6vw,36px)/1.1 var(--f-head);letter-spacing:-.025em;color:#fff;opacity:0;transform:translateY(18px);transition:opacity .4s,transform .55s cubic-bezier(.2,.8,.2,1),color .2s}
+.mnav-links a i{font:600 12px/1 var(--f-body);font-style:normal;letter-spacing:.1em;color:#9fd0ff;align-self:start;padding-top:.45em}
+.mnav-links a svg{width:22px;height:22px;opacity:.45;transition:transform .3s,opacity .3s}
+.mnav-links a:hover svg,.mnav-links a:focus-visible svg{transform:translateX(4px);opacity:1}
+.mnav-links a.on{color:#9fd0ff}.mnav-links a.on svg{opacity:1}
+body.menu-open .mnav-links a{opacity:1;transform:none}
+body.menu-open .mnav-links a:nth-child(1){transition-delay:.14s}body.menu-open .mnav-links a:nth-child(2){transition-delay:.19s}body.menu-open .mnav-links a:nth-child(3){transition-delay:.24s}body.menu-open .mnav-links a:nth-child(4){transition-delay:.29s}body.menu-open .mnav-links a:nth-child(5){transition-delay:.34s}
+.mnav-sub{opacity:0;transform:translateY(14px);transition:opacity .4s,transform .5s cubic-bezier(.2,.8,.2,1)}
+body.menu-open .mnav-sub{opacity:1;transform:none;transition-delay:.38s}
+.mnav-lbl{display:block;font:600 11px var(--f-body);letter-spacing:.16em;text-transform:uppercase;color:#93a6ba;margin-bottom:12px}
+.mnav-chips{display:flex;flex-wrap:wrap;gap:8px}
+.mnav-chips a{padding:10px 18px;border-radius:999px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);font:600 14px var(--f-body);color:#fff;transition:background .2s}
+.mnav-chips a:hover{background:rgba(255,255,255,.16)}
+.mnav-ct{display:grid;gap:8px}
+.mnav-c{display:flex;align-items:center;gap:12px;padding:13px 16px;border-radius:14px;background:rgba(255,255,255,.06);font-size:15px;color:#fff;line-height:1.35}
+.mnav-c svg{width:22px;height:22px;flex:none;color:#9fd0ff}
+.mnav-foot{margin-top:auto;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.mnav-foot .btn{flex:1 1 190px;justify-content:center}
+.mnav .lang{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.5)}
+.mnav .lang::before{background:#fff}
+.mnav .lang a{color:#fff}
+.mnav .lang a[aria-pressed="true"]{color:var(--blue)}
+.mbar{display:none}
+@media (min-width:1101px){.mnav{display:none}}
+@media (max-width:1100px){
+  .prose p[style*="text-align:center"],.prose.c{text-align:left!important}
+  nav.main,nav.main.open{display:none!important}
+  .burger{display:grid}
+  header>.wrap{grid-template-columns:auto 1fr auto;grid-template-rows:auto;column-gap:16px;padding-block:12px}
+  header .logo{grid-row:1;grid-column:1}
+  header .top{grid-column:2;grid-row:1;justify-content:flex-end;flex-wrap:nowrap;gap:14px}
+  header .top .mail,header .top .yt{display:none}
+  header .top .c{white-space:nowrap}
+  header .burger{grid-column:3;grid-row:1;justify-self:end}
+  .logo img{height:54px}
+}
+@media (min-width:761px) and (max-width:1100px){
+  .mnav-lang{display:none}
+  .xcases{grid-template-columns:repeat(3,1fr)}
+  .xfeat{grid-template-columns:repeat(4,1fr);gap:12px}.xfeat li{padding:18px}.xfeat b{font-size:15px}.xfeat span:not(.ic){font-size:13px}
+}
+@media (max-width:760px){
+  header>.wrap{grid-template-columns:auto 1fr auto auto;column-gap:8px;padding-block:10px}
+  header .top{display:none}
+  .hwa{display:grid;place-items:center;grid-column:3;grid-row:1;width:44px;height:44px;border-radius:50%;background:var(--soft);color:var(--ink);transition:background .3s,color .3s}
+  .hwa svg{width:22px;height:22px}
+  header .burger{grid-column:4}
+  .logo img{height:42px}
+  .sec{padding-block:44px}
+  .h2{font-size:27px;line-height:1.15}
+  .xhero{padding-top:calc(var(--hh,0px) + 44px);padding-bottom:18px}
+  .xhero h1{font-size:clamp(46px,14vw,62px)}
+  .xhero-in>p,.xhero-in p{font-size:15px;line-height:1.5}
+  .xhero .eyebrow{font-size:11px;letter-spacing:.14em;line-height:1.5;margin-bottom:14px}
+  .xhero .lead-x{font-size:15px;line-height:1.5;max-width:34ch}
+  .xhero .xbtns{display:grid;grid-template-columns:1fr;gap:10px;margin-top:24px}
+  .xhero .xbtns .btn{padding:15px 16px;font-size:15.5px;justify-content:center;text-align:center;width:100%}
+  .xfeat b{hyphens:manual;-webkit-hyphens:manual;overflow-wrap:anywhere;font-size:14px}
+  .xstats{margin-top:30px;border-radius:16px}
+  .xstats div{padding:14px 16px}
+  .xstats b{font-size:23px}
+  .xstats span{font-size:12px;line-height:1.35;display:block;margin-top:2px}
+  .xfeat{grid-template-columns:1fr 1fr!important;gap:10px}
+  .xfeat li{display:flex!important;flex-direction:column;gap:6px;padding:16px}
+  .xfeat li .ic{width:40px;height:40px;border-radius:12px;margin:0 0 4px}
+  .xfeat .ic svg{width:22px;height:22px}
+  .xfeat b{font-size:14.5px;line-height:1.25}
+  .xfeat span:not(.ic){font-size:12.5px;line-height:1.45}
+  .xprods,.xcases{display:grid;grid-template-columns:none!important;grid-auto-flow:column;grid-auto-columns:80%;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;margin-inline:-16px;padding:4px 16px 18px;scroll-padding-inline:16px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .xprods::-webkit-scrollbar,.xcases::-webkit-scrollbar{display:none}
+  .xprods>*,.xcases>*{scroll-snap-align:start}
+  .phero{height:210px}
+  .phero .tbox{font-size:34px}
+  .ft .ft-grid{grid-template-columns:1fr 1fr!important;gap:28px 16px}
+  .ft-brand,.ft .ft-grid>div:last-child{grid-column:1/-1}
+  .ft .ft-bot{flex-direction:column;align-items:flex-start;gap:8px;margin-top:32px;padding-bottom:88px}
+  .h-sec{margin-bottom:28px!important}
+  .cases{grid-template-columns:1fr 1fr!important;gap:16px 12px}
+  .case .cap{font-size:12.5px;line-height:1.35;padding-top:8px;gap:4px}
+  .pcase{padding:14px 14px 20px;border-radius:20px;margin-block:16px;gap:16px}
+  .pcase .lbl{left:10px;top:10px;font-size:12px;padding:6px 12px}
+  .pcase h3{font-size:18px;line-height:1.25}
+  .pcase .meta{gap:8px}
+  .pcase .meta span{gap:6px;font-size:13px;padding:6px 12px 6px 8px;border-radius:999px;background:var(--soft)}
+  .pcase .meta svg{width:18px;height:18px}
+  .pcase .prose{padding-top:14px;font-size:14.5px}
+  .mbar{position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:40;display:grid;grid-template-columns:auto 1fr;gap:8px;padding:8px;border-radius:20px;background:rgba(15,27,42,.84);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);box-shadow:0 14px 34px rgba(15,27,42,.32);transform:translateY(calc(100% + 24px));transition:transform .45s cubic-bezier(.2,.8,.2,1)}
+  .mbar.show{transform:none}
+  body.menu-open .mbar{transform:translateY(calc(100% + 24px))}
+  .mbar-wa{display:flex;align-items:center;gap:8px;padding:0 16px;border-radius:14px;background:#25d366;color:#fff;font:600 14px var(--f-body)}
+  .mbar-wa svg{width:20px;height:20px}
+  .mbar .btn{width:100%;padding:13px 14px;font-size:15px;border-radius:14px;justify-content:center}
+}
+@media (prefers-reduced-motion:reduce){.mnav,.mnav-links a,.mnav-sub,.mbar,.burger span{transition:none!important}}
+</style></head><body>
+<svg aria-hidden="true" height="0" style="position:absolute" width="0">
+<symbol id="arr" viewbox="0 0 24 24"><path d="M4 12h16m-7-7 7 7-7 7" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></symbol>
+<symbol id="dl" viewbox="0 0 24 24"><path d="M12 3v12m-5-5 5 5 5-5M4 20h16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path></symbol>
+<symbol id="cal" viewbox="0 0 40 40"><circle cx="20" cy="20" fill="none" r="18.5" stroke="currentColor" stroke-width="2"></circle><rect fill="none" height="16" rx="2" stroke="currentColor" stroke-width="2" width="18" x="11" y="12"></rect><path d="M11 17h18M15 10v4M25 10v4" stroke="currentColor" stroke-width="2"></path></symbol>
+<symbol id="info" viewbox="0 0 40 40"><circle cx="20" cy="20" fill="none" r="18.5" stroke="currentColor" stroke-width="2"></circle><path d="M20 17v12M20 11v2" stroke="currentColor" stroke-linecap="round" stroke-width="3"></path></symbol>
+<symbol id="wa" viewbox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.6-1.2A9 9 0 1 0 12 3z"></path><path d="M9 8.5c0 3.5 3 6.5 6.5 6.5l1-1.5-2-1-1 .8c-1-.4-2-1.4-2.4-2.4l.8-1-1-2z"></path></g></symbol>
+<symbol id="at" viewbox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="3.5"></circle><path d="M15.5 12v1.5a2.5 2.5 0 0 0 5 0V12a8.5 8.5 0 1 0-3.4 6.8"></path></g></symbol>
+<symbol id="pin" viewbox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 21s-6.5-6.1-6.5-11a6.5 6.5 0 0 1 13 0c0 4.9-6.5 11-6.5 11z"></path><circle cx="12" cy="10" r="2.3"></circle></g></symbol>
+<symbol id="clock" viewbox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.4"><path d="M20.5 12A8.5 8.5 0 1 1 12 3.5"></path><path d="M12 7v5l3 2"></path></g></symbol>
+<symbol id="chev" viewbox="0 0 24 24"><circle cx="12" cy="12" fill="none" r="10.5" stroke="currentColor" stroke-width="1.2"></circle><path d="m8 10.5 4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"></path></symbol>
+</svg>
+<header><div id="prog"></div>
+<div class="wrap">
+<div class="top">
+<a aria-label="YouTube" class="yt" href="https://www.youtube.com/" rel="noopener" target="_blank"><svg viewbox="0 0 24 24"><circle cx="12" cy="12" fill="currentColor" r="11"></circle><path d="M10 8.5v7l6-3.5z" fill="#fff"></path></svg></a>
+<span aria-label="Site language" class="lang" style="--i:2" role="group"><a href="../deploy.html" hreflang="ru" lang="ru" aria-pressed="false">РУС</a><a href="../ky/deploy.html" hreflang="ky" lang="ky" aria-pressed="false">КЫРГ</a><a href="../en/deploy.html" hreflang="en" lang="en" aria-pressed="true">ENG</a></span>
+<a class="c" href="https://wa.me/996770880228" rel="noopener" target="_blank"><svg><use href="#wa"></use></svg>+996 770 880 228</a>
+<a class="c mail" href="mailto:info@ccca.kg"><svg><use href="#at"></use></svg>info@ccca.kg</a>
+</div>
+<div class="bar">
+<a aria-label="Concrete Canvas Central Asia — home" class="logo" href="index.html"><img alt="Concrete Canvas Central Asia" class="lg-c" height="130" src="../img/cca-en-blue.svg" width="306"/><img alt="" class="lg-w" height="130" src="../img/cca-en-white.svg" width="306"/></a>
+<a aria-label="WhatsApp" class="hwa" href="https://wa.me/996770880228" rel="noopener" target="_blank"><svg><use href="#wa"></use></svg></a><button aria-controls="mnav" aria-expanded="false" aria-label="Menu" class="burger" id="burger"><span></span><span></span><span></span></button>
+<nav class="main" id="nav">
+<a data-sec="material" href="material.html">ABOUT THE MATERIAL</a><a data-sec="products" href="products.html">PRODUCTS</a><a data-sec="applications" href="applications.html">APPLICATIONS</a><a data-sec="projects" href="projects.html">PROJECTS</a><a data-sec="contacts" href="contacts.html">CONTACTS</a>
+</nav>
+</div>
+</div>
+</header>
+<div aria-hidden="true" class="mnav" id="mnav"><div class="mnav-in">
+<nav aria-label="Menu" class="mnav-links"><a data-sec="material" href="material.html"><i>01</i><span>About the material</span><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a><a data-sec="products" href="products.html"><i>02</i><span>Products</span><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a><a data-sec="applications" href="applications.html"><i>03</i><span>Applications</span><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a><a data-sec="projects" href="projects.html"><i>04</i><span>Projects</span><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a><a data-sec="contacts" href="contacts.html"><i>05</i><span>Contacts</span><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a></nav>
+<div class="mnav-sub"><span class="mnav-lbl">Products</span><div class="mnav-chips"><a href="cct.html">CCT</a><a href="ccx.html">CCX</a><a href="cchydro.html">CC Hydro</a><a href="deploy.html">DEPLOY</a></div></div>
+<div class="mnav-sub mnav-ct"><a class="mnav-c" href="https://wa.me/996770880228" rel="noopener" target="_blank"><svg><use href="#wa"></use></svg>+996 770 880 228</a><a class="mnav-c" href="mailto:info@ccca.kg"><svg><use href="#at"></use></svg>info@ccca.kg</a><span class="mnav-c"><svg><use href="#pin"></use></svg>397 Chyngyz Aitmatov Ave, Bishkek, Kyrgyzstan</span></div>
+<div class="mnav-sub mnav-foot"><span class="mnav-lang"></span><button class="btn js-order">Send a request</button></div>
+</div></div>
+<div class="mbar" id="mbar"><a class="mbar-wa" href="https://wa.me/996770880228" rel="noopener" target="_blank"><svg><use href="#wa"></use></svg>WhatsApp</a><button class="btn js-order">Send a request</button></div>
+<main id="view"><nav aria-label="Section" class="subnav"><div class="wrap"><a class="" href="cct.html">CCT</a><a class="" href="ccx.html">CCX</a><a class="" href="cchydro.html">CC Hydro</a><a class="on" href="deploy.html">DEPLOY</a></div></nav><section class="hero" style="background-image:url(../img/dp-wide.jpg)"><img alt="DEPLOY" src="../img/p-deploy.jpg" style="width:clamp(200px,22vw,400px);box-shadow:0 8px 30px rgba(0,0,0,.3)"/></section>
+<section class="sec wrap"><h1 class="h-sec center" style="font-weight:500;margin-bottom:40px">14R tank</h1><div class="prose c">
+<p>DEPLOY presents the 14R Kit — a rapidly deployable 14,000-litre concrete water storage tank that is installed in a matter of hours. The kit also includes tools and accessories for quick and easy installation.</p>
+<p>Amid global climate change, DEPLOY is changing the approach to water storage, making it more convenient and sustainable. Conventional approaches require many resources for delivery and installation; the 14R solves these problems. It combines the strength of concrete with the flexibility of fabric, speeding up installation and extending service life.</p>
+<p>The 14R can support hospitals, clinics, utilities, power plants and farmland. It is also indispensable in emergencies, supplying water to displaced persons' camps, field hospitals, schools and other critical facilities.</p>
+<p style="margin-top:20px"><button class="btn js-dl">Download brochure</button></p></div></section>
+<section class="grey-sec sec"><div class="wrap two"><div class="prose"><p>The body and base of the 14R are made of Concrete Canvas. Thanks to the strength and impermeability of CC, the tank reliably holds liquid, preventing leaks and protecting the contents from external factors. Concrete Canvas is also resistant to mechanical damage, UV, corrosion and chemicals, which significantly extends the tank's service life.</p><p>When folded, the 14R takes up minimal space, but once deployed and hydrated its surface hardens into a stable monolithic structure.</p></div><img alt="Surface of the 14R tank" src="../img/dp-tex.jpg" style="width:min(403px,100%);justify-self:end"/></div></section>
+<section class="sec wrap"><h2 class="h3 center" style="font-weight:500;margin-bottom:40px">Why choose DEPLOY?</h2><div class="bcards"><div class="bcard rv"><h4>High strength</h4><p>Inside CC is a dry concrete mix. The canvas is built just like reinforced concrete — only Concrete Canvas uses textile fibres instead of steel mesh. As a result, it does not crack and absorbs impact energy well.</p></div><div class="bcard rv"><h4>Monolithic structure</h4><p>Once set, the canvas becomes a very strong concrete layer. Its strength comes from both the high-quality concrete mix and the textile fibre reinforcement. Securely joined sheets have zero movement. They are fixed to the surface with steel pins or anchors, so the whole structure ends up with zero movement.</p></div><div class="bcard rv"><h4>Complete impermeability</h4><p>The waterproof layer completely prevents moisture from getting under the canvas. This means the slope beneath it will not be eroded by rain or snow, for example. And when strengthening the banks of water bodies, the canvas reliably protects them from washout.</p></div><div class="bcard rv"><h4>High strength</h4><p>Inside CC is a dry concrete mix. The canvas is built just like reinforced concrete — only Concrete Canvas uses textile fibres instead of steel mesh. As a result, it does not crack and absorbs impact energy well.</p></div><div class="bcard rv"><h4>Monolithic structure</h4><p>Once set, the canvas becomes a very strong concrete layer. Its strength comes from both the high-quality concrete mix and the textile fibre reinforcement. Securely joined sheets have zero movement. They are fixed to the surface with steel pins or anchors, so the whole structure ends up with zero movement.</p></div><div class="bcard rv"><h4>Complete impermeability</h4><p>The waterproof layer completely prevents moisture from getting under the canvas. This means the slope beneath it will not be eroded by rain or snow, for example. And when strengthening the banks of water bodies, the canvas reliably protects them from washout.</p></div></div></section>
+<section aria-roledescription="carousel" class="slider square js-slider"><div class="slides"><img alt="" src="../img/dp-wide.jpg"/><img alt="" src="../img/hero.jpg"/><img alt="" src="../img/slide1.jpg"/></div><button aria-label="Back" class="arrow prev"><svg style="transform:scaleX(-1)"><use href="#arr"></use></svg></button><button aria-label="Next" class="arrow next"><svg><use href="#arr"></use></svg></button><div class="dots"></div></section><div class="wrap contact-line">Contact us for more information<button class="btn js-order">Send a request</button></div></main>
+<footer class="ft"><div class="wrap ft-grid">
+<div class="ft-brand"><img alt="Concrete Canvas Central Asia" src="../img/cca-en-white.svg"/><p>Exclusive partner of CONCRETE CANVAS LTD in the CIS, Georgia and Azerbaijan.</p></div>
+<div><h4>Sections</h4><a href="material.html">About the material</a><a href="applications.html">Applications</a><a href="projects.html">Projects</a></div>
+<div><h4>Products</h4><a href="cct.html">CCT</a><a href="ccx.html">CCX</a><a href="cchydro.html">CC Hydro</a><a href="deploy.html">DEPLOY</a></div>
+<div><h4>Contacts</h4><span>+996 770 880 228</span><span>info@ccca.kg</span><span>397 Chyngyz Aitmatov Ave, Bishkek, Kyrgyzstan</span><button class="btn js-order" style="margin-top:8px">Send a request</button></div>
+</div><div class="wrap ft-bot"><span>© 2012 — 2026 Concrete Canvas ™. All rights reserved.</span><span class="links"><a href="policy.html">Privacy policy</a><a href="policy.html">Terms</a></span></div></footer>
+<div class="modal" hidden="" id="modal"><div class="in"><button aria-label="Close" class="x" type="button">×</button><div id="modalBody"></div></div></div>
+<script>
+window.__ROUTE__='deploy';window.__PRE__=1;window.__LANG__='en';
+
+const POLICY=[["1. Преамбула", "Настоящая Политика (далее — Политика) описывает порядок обработки персональных данных пользователей сайта, доступном по ссылке https://uccr.su/ (далее – Сайт). Оператор персональных данных – Общество с ограниченной ответственностью “ КОНКРИТ КЭНВАС РАША ” , ИНН: 9710011701 (далее - Компания, Оператор), 109012, г.Москва, ул Никольская, д. 10,этаж 6 ком.50 Адрес электронной почты для направления запросов об обработке персональных данных: info@uccr.su Когда Вы посещаете наш Сайт и пользуетесь инструментами и сервисами, предоставляемыми на Сайте, мы становимся оператором Ваших персональных данных. Обработка персональных данных – любое действие (операция) или совокупность действий (операций), совершаемых с использованием средств автоматизации или без использования таких средств с персональными данными."], ["2. Права субъектов персональных данных", "В соответствии с Федеральным законом от 27.07.2006 № 152-ФЗ «О персональных данных» (далее – «Закон о персональных данных» или «152-ФЗ»), Вы имеете право: на доступ к персональным данным; на уточнение персональных данных; на блокирование и удаление персональных данных; на обжалование наших действий или бездействия; на обжалование решений, принятых на основании исключительно автоматизированной обработки Ваших персональных данных; на отзыв согласия на обработку персональных данных. Как Вы можете реализовать свои права? Вы можете написать письменный запрос на наш адрес: 109012, г.Москва, ул Никольская, д. 10,этаж 6 ком.50 , указав в нем сведения о документе, удостоверяющем Вашу личность или личность вашего представителя (тип документа, серия и номер, кем и когда выдан), Ваше ФИО или ФИО представителя, информацию о характере взаимоотношений с Вами, которые будут подтверждать факт обработки Ваших персональных данных, Вашу подпись или подпись Вашего представителя. Такой запрос может быть направлен на указанную выше электронную почту в форме электронного документа, подписанного в соответствии с положениями законодательства Российской Федерации об электронной подписи."], ["3. Для чего мы обрабатываем Ваши персональные данные", "В этом разделе мы расскажем о целях и сроках обработки персональных данных, а также объясним, кому мы передаем Ваши персональные данные. В рамках перечисленных целей мы будем собирать, записывать, систематизировать, накапливать, хранить, уточнять (обновлять, изменять), извлекать, использовать, передавать (предоставлять, обеспечивать доступ), блокировать, удалять, уничтожать Ваши персональные данные."], ["3.1. Обратная связь", "Если Вы отправите нам запрос, то для получения ответа при отправке сообщения через форму обратной связи нам необходимо: имя телефон адрес электронной почты Обрабатываемые в рамках указанной цели данные не относятся к специальным категориям или биометрическим персональным данным в соответствии со ст. 10–11 Закона №152-ФЗ и обрабатываются автоматизированным способом. Правовым основанием для обработки указанных персональных данных в соответствии с п.1 ч.1 ст.6 и ч.1 ст. 9 Закона № 152-ФЗ является Согласие на обработку персональных данных."], ["3.2. Аналитика посещений на Сайте", "Что такое файлы cookie? Файлы cookie — это файлы небольшого объема, которые при использовании веб-сайта загружаются на устройство Пользователя в момент, когда загружается определенный контент веб-сайта. В файлах cookie обобщается информация о том, как используется веб-сайт с обобщением стандартной информации, содержащейся в записях журналов (IP адрес подключения, время подключения, продолжительность подключения), а также информация о действиях, совершенных на веб-сайте. Мы хотим, чтобы Вам было комфортно использовать все функции нашего Сайта, поэтому для его корректной работы мы обрабатываем файлы cookie. Эти данные позволяют запомнить Ваши предпочтения, улучшить эргономику Сайта, а также уровень предоставления услуг. Обрабатываемые автоматизированным способом данные не относятся к специальным категориям персональных данных или биометрическим в соответствии со статьями 10 и 11 Федеральный закон от 27 июля 2006 г. N 152-ФЗ «О персональных данных». На Сайте используются разные типы файлов cookie: Технические файлы cookie: необходимы для правильной работы Сайта, устанавливаются автоматически при загрузке страницы, если иное не указано в настройках Вашего браузера. Обычно они применяются в ответ на производимые Вами действия (контроль сессии, заполнение форм). Аналитические файлы cookie: используются для получения сведений о настройках браузеров и для анализа Вашего поведения на Сайте для целей улучшения производительности Сайта и качества наших услуг. Маркетинговые файлы cookie: используются для того, чтобы повышать эффективность маркетинговых кампаний и сделать предложения ориентированными на Вас и Ваши интересы. Для сбора статистики на Сайте используются аналитические инструменты от компаний Google inc и Яндекс, предоставляемые в соответствии с правилами предоставления услуг данных компаний: Яндекс – Политика конфиденциальности; условия использования. 1С-Битрикс – Политика конфиденциальности. Как отказаться от использования cookie-файлов? Путем изменения надлежащих настроек в браузере, Вы можете отклонить файлы cookie и/или сконфигурировать Ваш браузер так, чтобы получать предупреждение, прежде чем файл cookie будет сохранен. Однако, обратите внимание, что при отключении возможности хранения файлов cookie, мы не гарантируем корректную работу нашего Сайта в Вашем браузере. Если Вы не хотите использовать файлы cookie, но при этом не можете заблокировать их использование, пожалуйста, немедленно прекратите использование нашего Сайта."], ["4. Безопасность данных", "Оператор принимает соответствующие технические и организационно-правовые меры в соответствии с требованиями действующего законодательства РФ о персональных данных для обеспечения безопасности ваших персональных данных, в частности, для предотвращения их несанкционированного изменения, повреждения или нарушения конфиденциальности. Мы реализуем следующие организационно-правовые меры: назначено должностное лицо, ответственное за обеспечение безопасности персональных данных; принята Политика, иные локальные нормативные акты, устанавливающие правовой режим обработки персональных данных; утвержден перечень лиц, доступ которых к персональным данным необходим для выполнения ими служебных (трудовых) обязанностей; проводится ознакомление работников и иных лиц с правилами Политики и требованиями законодательства к обработке и защите персональных данных; создана система защиты персональных данных; организован учет машинных носителей персональных данных; проводится оценка вреда, который может быть причинен субъектам персональных данных в случае нарушения Закона о персональных данных; проводятся периодические проверки соблюдения порядка обработки и обеспечения безопасности персональных данных. Мы реализуем следующие технические меры: организация режима обеспечения безопасности помещений, в которых размещена информационная система персональных данных, препятствующий возможности неконтролируемого проникновения; обеспечение сохранности носителей персональных данных; использование средств защиты информации, прошедших процедуру оценки соответствия требованиям законодательства Российской Федерации; принятие мер в случае обнаружения фактов несанкционированного доступа к персональным данным; использование защищенного протокола https."], ["5. Срок обработки персональных данных, отзыв согласия", "Если иное прямо не указано в определенной цели обработки персональных данных, персональные данные обрабатываются в течение 5 лет с момента возникновения правового основания обработки, либо до момента прекращения обработки персональных данных. Согласие на обработку персональных данных может быть отозвано субъектом или представителем путем направления письменного либо электронного заявления, подписанного с использованием усиленной квалифицированной электронной подписи по адресу Оператора, указанному в преамбуле."], ["6. Изменение Политики", "Наша политика может быть изменена при необходимости. На сайте опубликована актуальная версия Политики."]];
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const ARR=`<svg><use href="#arr"/></svg>`, ARRL=`<svg style="transform:scaleX(-1)"><use href="#arr"/></svg>`, DL=`<svg><use href="#dl"/></svg>`;
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+/* ---------- данные ---------- */
+const NEWS=[
+ {id:6,date:'10 октября 2025',img:'k9',gal:['k19','k8','k10','k7','k6','k9'],title:'Закладка завода Concrete Canvas в Кыргызстане',text:['10 октября 2025 года состоялась церемония закладки первого камня завода Concrete Canvas в Кыргызстане.','На церемонии гостям представили характеристики будущего объекта и преимущества технологии бетонного полотна.']},
+ {id:1,date:'30 сентября 2026',img:'k2',title:'Реконструкция канала в Кыргызстане',text:['В Кыргызстане в рамках капитальной реконструкции канала «Бел-Арык» выполнена облицовка бетонным полотном Concrete Canvas. Канал проходит по склону горы, и долгое время на участке происходили большие потери воды.','Применение материала направлено на защиту русла от размыва и повышение эффективности орошения сельскохозяйственных угодий.','Источник: ЭлТР Кыргызстан']},
+ {id:2,date:'3 августа 2026',img:'k4',title:'Реализация проекта в Кыргызстане',text:['Бетонное полотно Concrete Canvas применено для облицовки оросительного канала в Кыргызстане. Работы выполнены в короткие сроки без остановки подачи воды на поля.','Облицовка защищает русло от размыва и сокращает потери воды на фильтрацию.']},
+ {id:3,date:'16 мая 2026',img:'n3',title:'10 лет компании United Concrete Canvas',text:['Компания United Concrete Canvas отмечает 10 лет работы. С 2016 года мы являемся эксклюзивным партнёром CONCRETE CANVAS LTD в странах СНГ, Грузии и Азербайджане.','Благодарим наших заказчиков и партнёров за доверие!']},
+ {id:4,date:'30 сентября 2026',img:'k30',title:'Видео проектов United Concrete Canvas в Кыргызстане',text:['Смотрите видеообзор объектов, на которых бетонное полотно Concrete Canvas было уложено в Кыргызстане: облицовка каналов, защита склонов и укрепление дамб.']},
+ {id:5,date:'30 сентября 2026',img:'n5',title:'Реализация проекта в Грузии: видеокейс',text:['Видеокейс о поставке и монтаже бетонного полотна Concrete Canvas на объекте в Грузии: от разгрузки рулонов до гидратации покрытия.']}];
+
+const APPS=[
+ {id:'slopes',name:'Защита склонов',up:'ЗАЩИТА СКЛОНОВ',ic:'ic-slopes',hero:'hero',gal:['hero','i1','slide3'],
+  h:'Быстрое и надежное укрепление и защита склонов с помощью бетонного полотна Concrete Canvas',
+  p:['GCCM используется в проектах укрепления склонов вместо торкрет-бетонирования и стальной сетки. Бетонное полотно дешевле и надежнее использования торкретирования. Высокая прочность на растяжение в гибком состоянии до увлажнения позволяет проводить работы на вертикальных объектах высотой более 40 м, и даже на самых крутых, отвесных склонах с углом наклона более 60-80°. GGCM также применим в районах высокой сейсмической активности.','CC подходит для защиты любых склонов от разрушения под воздействием ветра, поверхностных стоков, атмосферных осадков, в результате подвижности грунта и деградации окружающей среды. Грунт и рельеф, наличие выступов, впадин и других неровностей не имеют значения. Concrete Canvas плотно «обволакивает» любую неровность.']},
+ {id:'canals',name:'Облицовка каналов',up:'ОБЛИЦОВКА КАНАЛОВ',ic:'ic-canals',hero:'k2',gal:['k30','k2','k4','k5','k13'],
+  h:'Бетонное полотно Concrete Canvas — революционная технология укрепления каналов и траншей',
+  p:['Использование технологии GCCM в проектах реконструкции каналов в качестве облицовочного материала позволяет существенно поднять эксплуатационную надежность конструкции и полностью исключает потери на фильтрацию воды. Скорость монтажа GCCM в каналах многократно превышает темпы работ с традиционными растворами. Это проще, быстрее, менее затратно и не требует смесительного оборудования.','Скорость монтажа GCCM в каналах может достигать 200 м²/час бригадой из 3-х человек. За 1 рабочий день бригада из 3-5 человек используя только ручной инструмент, восстанавливает облицовку 100 пог.м канала производительностью 5 м³/с. Это придает значительное ускорение темпам ввода поливных земель.']},
+ {id:'vegetation',name:'Подавление растительности',up:'ПОДАВЛЕНИЕ РАСТИТЕЛЬНОСТИ',ic:'ic-veg',hero:'a2',gal:['a2','i2','a3'],
+  h:'Эффективная защита любых объектов от растительности с помощью бетонного полотна Concrete Canvas',
+  p:['CC успешно прошёл испытания на устойчивость к прорастанию сорняков и проникновению корней по стандарту DD CEN/TS 14416:2005. Материал доступен в компактных рулонах, не требует спецтехники при укладке и идеально подходит для участков с ограниченным доступом, в том числе вдоль автомобильных дорог и ж/д путей.','В нефтегазовой отрасли CC обеспечивает устойчивость к углеводородам и защищает трубопроводы от зарастания, коррозии и повреждений. А также облегчает визуальный контроль в случае утечек.']},
+ {id:'filter',name:'Противо-фильтрационные сооружения',up:'ПРОТИВО-ФИЛЬТРАЦИОННЫЕ СООРУЖЕНИЯ',ic:'ic-filter',hero:'i3',gal:['i3','a3','lay4'],
+  h:'Бетонное полотно Concrete Canvas в проектах по сдерживанию воды и промышленных жидкостей',
+  p:['Специально разработанная модификация GCCM Hydro активно применяется в нефтехимической и нефтегазовой промышленности. Превосходная герметичность GCCM к агрессивным средам достигается за счет входящей в состав композита дополнительной геомембраны повышенной прочности.','Высокая водонепроницаемость и химическая стойкость композитного материала позволяют использовать его на гидротехнических сооружениях, опасных производственных объектах, при устройстве бассейнов, откосов ограждающих дамб, складов нефти и нефтепродуктов, каре резервуарных парков, шламовых амбар и т.д.']},
+ {id:'dams',name:'Защитные дамбы',up:'ЗАЩИТНЫЕ ДАМБЫ',ic:'ic-dams',hero:'a3',gal:['a3','i3','slide1'],
+  h:'Бетонное полотно Concrete Canvas в проектах по облицовке дамб, обваловок и каре технологических площадок',
+  p:['GCCM предлагает достойную альтернативу обычному бетонированию особенно для труднодоступных районов с суровым климатом. Благодаря меньшему весу и возможности хранения больших запасов GCCM в течение длительного времени, проекты можно осуществлять в течение короткого строительного сезона, характерного для Крайнего Севера.','Обеспеченное заводскими характеристиками низкое водоцементное соотношение во время гидратации, а также задаваемая внутренней матричной структурой покрытия гибкость к движению грунтового основания делает продукт незаменимым для опасных промышленных объектов с высокими требованиями к качеству экранов защитных дамб.']},
+ {id:'repair',name:'Ремонт',up:'РЕМОНТ',ic:'ic-repair',hero:'k28',gal:['k28','k29','k24','k22'],
+  h:'Бетонное полотно Concrete Canvas — революционный метод ремонта и восстановления объектов',
+  p:['GCCM может использваться для быстрого ремонта и восстановления разрушенных и поврежденных бетонных и металлических конструкций, например, бетонных водоподводящих лотков или водопропускных гофрированных труб.','Монтаж GCCM в таких конструкциях выполняется вдоль без их демонтажа с темпами до 1200-1500 пог.м. в день.']}];
+
+const ADV6=[['Высокая прочность','Внутри CC — сухая бетонная смесь. Само по себе устройство полотна ничем не отличается от устройства армированного бетона. Только вместо стальной сетки в Concrete Canvas используются текстильные волокна. В результате оно не растрескивается, хорошо поглощает энергию воздействия.'],
+ ['Монолитная конструкция','После затвердевания полотно превращается в очень прочный слой бетона. Его прочность обусловлена как высоким качеством бетонной смеси, так и армированием текстильными волокнами. Надежно соединенные между собой отрезки полотна имеют нулевую подвижность. К поверхности они крепятся стальными штырями или анкерами. Таким образом, нулевую подвижность в итоге имеет вся конструкция.'],
+ ['Полная водонепроницаемость','Гидроизолирующий слой полностью исключает проникновение влаги под полотно. Это значит, что под полотном склон не будет разрушаться под воздействием, например, дождя или снега. А если речь идет об укреплении склона водоемов, то полотно надежно защитит его от вымывания.'],
+ ['Предельно долгий срок службы','По сравнению с традиционными технологиями защиты склонов, срок службы полотна значительно выше — практически такой же, как у армированного бетона. Материал не подвержен коррозии, воздействию химических веществ, устойчив к солнечному свету, изменению погодных условий, перепадам температуры.'],
+ ['Изгибающая деформация','Уникальной характеристикой GCCM является его деформационная способность. Благодаря своей армирующей структуре и прочной тканевой поверхности, GCCM, в отличие от железобетона, обладает способностью изгибаться и приспосабливаться к изменениям состояния грунтового основания, вызванным климатическими условиями.'],
+ ['Экологичность','Использование GCCM позволяет значительно уменьшить выброс углерода в атмосферу: более чем на 60%, по сравнению с традиционными бетонными решениями.']];
+
+const IND=[
+ {id:'mining',name:'Горнодобывающая промышленность',sub:'Горнодобывающая промышленность',up:'ГОРНОДОБЫВАЮЩАЯ ПРОМЫШЛЕННОСТЬ',ic:'ix-mining',
+  h:'Concrete Canvas® в проектах горнодобывающего сектора',intro:'Бетонное полотно — идеальное решение для установки в местах добычи полезных ископаемых. Рудники часто расположены в особых географических и экстремальных климатических условиях, работы проводятся в малообжитых и отдалённых районах. Материал прост в использовании, обеспечивает удобство транспортировки к объекту и высокую скорость монтажа.',
+  cases:[['Укрепление искусственной дамбы','Казахстан','Июль 2023','ССX-M','Для подавления процессов поверхностной эрозии и выветривания был осуществлен монтаж покрытия GCCM ССХ-М на склоне селезащитной дамбы длиной более 25 метров, примыкающей к смотровой площадке. Использование ССХМ является более технологичной альтернативой использованию торкрет-методов нанесения на поверхность склонов слоя бетона или других строительных растворов. Бригада из 4 рабочих завершили работу всего за один день. Всего использовано 285 м² бетонного полотна.'],
+   ['Укрепление искусственной дамбы','Россия, Красноярский край','Октябрь 2020','ССX-M','Бетонное полотно использовалась для устройства герметичного защитного покрытия на базе хранения углеводородов. Традиционные методы облицовки защитных покрытий требовали привлечения тяжелой техники и оборудования в условиях ограничения доступа к строительной площадке и занимало продолжительный период времени. Требовалось обеспечить надежную и долговременную защиту зоны расположения резервуаров в минимальные сроки. GCCM позволило полоностью решить поставленные задачи в установленный срок.'],
+   ['Укрепление искусственной дамбы','Кыргызстан, Джелал-Абадский район','Октябрь 2021','ССX-M','GCCM был использован для укрепления искусственной дамбы хвостохранилища при строительстве золотоизвлекательной фабрики с объектами инфраструктуры для дальнейшей разработки золоторудного месторождения Терексай в западном Кыргызстане.|Из-за удаленного местоположения и крайне важного характера проекта, полотно Concrete Canvas® было выбрано в качестве предпочтительного решения по сравнению с традиционными методами, которые не обеспечили бы желаемую надежность или срок службы.'],
+   ['Защита склона от эрозии и выветривания','Бразилия, Пара','Декабрь 2021','CCT1','Бетонное полотно было использовано для защиты от эрозии склонов, расположенных у входа в шахту Педра, и предотвращения выветривания окружающих почв. Изначально для реализации проекта рассматривались торкрет-бетон и геоматы для армирования торфа, однако, эти варианты были отклонены из-за сложности применения. Сырье для торкрет-бетона в регионе было недоступно, а установка мешала бы работе шахты.|Выбор в пользу GCCM позволил осуществлять монтаж без остановки работы шахты. Материал в количестве 5600 м² был установлен за 25 дней.',{ph:["cc-42568-1"],url:'https://www.concretecanvas.com/project/cc-slope-protection-oz-minerals-pedra-branca-mine-brazil/'}]]},
+ {id:'agro',name:'Сельское хозяйство',sub:'Сельское хозяйство',up:'СЕЛЬСКОЕ ХОЗЯЙСТВО',ic:'ix-agro',
+  h:'Concrete Canvas® в аграрных проектах',intro:'Бетонное полотно — идеальное решение для установки в местах добычи полезных ископаемых. Рудники часто расположены в особых географических и экстремальных климатических условиях, работы проводятся в малообжитых и отдалённых районах. Материал прост в использовании, обеспечивает удобство транспортировки к объекту и высокую скорость монтажа.',
+  cases:[['Облицовка канала','Казахстан, Алматинская область','Июль 2024','ССX-M','Для сокращения потерь воды в распределительных каналах в начале июля 2024 года был осуществлен монтаж покрытия GCCM ССХ-М на одном из объектов в Алматинской области. Поскольку объект находится в труднодоступном месте, доставка и укладка традиционных видов бетона заняла бы значительное время. Для ускорения сроков ввода распределительного канала в эксплуатацию руководство района приняло решение о применении бетонного полотна. Все работы, с учетом монтажа и гидратации поверхности, были выполнены за 4 дня.',{ph:["cc-55498-1", "cc-55498-2", "cc-55498-3", "cc-55498-4"],url:'https://www.concretecanvas.com/project/ccx-m-channel-lining-zhambyl-kazakhstan/'}],
+   ['Облицовка рыбных прудов','Казахстан, Шымкент','Сентябрь 2023','ССX-M','Бетонное полотно было использовано для облицовки основания шести прудов для рыбохозяйственной деятельности. Применение GCCM существенно сократило сроки монтажа и ввода объекта в эксплуатацию при гарантированном качестве покрытия. Всего было использовано 1520 м² материала.',{ph:["cc-74922-1", "cc-74922-2", "cc-74922-3", "cc-74922-4"],url:'https://www.concretecanvas.com/project/lagoon-lining-kazakhstan/'}],
+   ['Укрепление оросительного канала','Казахстан, Жамбыльская область','Июль 2023','ССX-M','Бетонное полотно было использовано для облицовки оросительного канала. Из-за ограничения доступа большегрузной техники к участку, заказчиком было принято решение использовать инновационное покрытие Concrete Canvas. Высокая скорость проведения работ исключила длительный простой систем полива. Работы по строительству канала были выполнены за 1 рабочий день.',{ph:["cc-55078-1"],url:'https://www.concretecanvas.com/project/ccx-canal-lining-kazakhstan/'}],
+   ['Устранение потерь воды','Узбекистан, Сырдарьинская область','Июнь 2022','CCX-M','В данном проекте требовалось осуществить облицовку распределительного узла ирригационного канала в максимально короткие сроки и минимальной подготовкой основания. Работа проводилась при температуре 39°С. Задача заключалась в устранении потерь воды на существующем оросительном канале. Монтаж был выполнен за 2 дня.'],
+   ['Устранение потерь воды','Узбекистан, Чимбайский район','Июнь 2024','CCX-M','GCCM ССХ-M был применен для создания участка распределительного канала ирригационной системы. Этот канал из-за особенностей отметок постоянно подтоплял часть поля, делая его не пригодным к использованию. За 1 день был выполнен монтаж участка канала с остановкой воды на кратчайший период. Канал продолжает выполнять транзит воды без размывов и потерь воды.']]},
+ {id:'roads',name:'Автомобильные дороги',sub:'Автомобильные дороги',up:'АВТОМОБИЛЬНЫЕ ДОРОГИ',ic:'ix-road',
+  h:'Concrete Canvas® в строительстве автодорог',intro:'Бетонное полотно активно используется в гражданском строительстве. Concrete Canvas® — это экономически эффективная альтернатива традиционным видам бетона, которая широко применяется в проектах по строительству автомобильных дорог и обустройству прилегающих территорий. Материал обеспечивает надежную защиту от эрозии и подавление растительности, а скорость его укладки сводит ограничение дорожного движения к минимальному.',
+  cases:[['Укрепление кювета','Россия, Красноярский край','Сентябрь 2019','CCT2','В данном проекте был выполнен ремонт с укреплением кювета на объекте автомобильной дороги Кузнецово-Зыково, с целью исключения разрушения водоотводного кювета ливневыми потоками. Работа велась при температуре воздуха +12°С во время дождя. Укладка бетонного полотна CCT2 (СС8) была выполнена за 2 часа бригадой из 4 рабочих с учетом подготовительных работ и гидратации поверхности покрытия. Через 24 часа поверхность кювета обрела стойкое к эрозионной нагрузке покрытие. Для разматывания рулонов бетонного полотна использовался кран-манипулятор.'],
+   ['Защита склона от эрозии','Великобритания, Бирмингем','Апрель 2022','CCT2','GCCM использовался для защиты склона под автомагистралью М6 рядом с перекрестком Network Rail в одном из районов Бирмингема. Необходимо было укрепить склон и защитить его от эрозии, вызванной регулярными подтоплениями из-за непогоды. Первоначально была предусмотрена установка монолитной бетонной плиты, однако, из-за того, что объект находился под перекрестком, доступ к нему был ограничен, и возникли проблемы с доставкой бетона, насосов и опалубки. В результате, был выбран CCT2, поскольку для его установки требуется минимальное количество оборудования, а также благодаря высокой скорости установки материала и низких затрат на техническое обслуживание.',{ph:["cc-44091-1", "cc-44091-3", "cc-44091-4"],url:'https://www.concretecanvas.com/project/cc-slope-protection-m6-birmingham/'}],
+   ['Облицовка дренажных каналов и труб','Великобритания, Уэльс','Август 2023','CCT2','GCCM был использован для облицовки дренажных каналов и водопропускных труб в рамках работ по благоустройству автомагистрали A40. Поскольку местность подвержена интенсивному затоплению во время штормов, насыпь, окружающая водопропускную трубу, нуждалась в надежной защите от эрозии. Поначалу для облицовки были подобраны бетонные плиты, однако, труднодоступность местности затрудняла их доставку на объект и установку. В конечном счете, для реализации проекта было выбрано бетонное полотно марки CCT2.',{ph:["cc-65687-1", "cc-65687-3", "cc-65687-4"],url:'https://www.concretecanvas.com/project/cc-channel-culvert-lining-a40-south-wales/'}],
+   ['Облицовка дренажного канала','Италия, Пьемонт','Декабрь 2023','CCX-M','В данном проекте GCCM был использован в проекте по строительству нового дренажного канала на участке автомагистрали A33. В рамках проекта должны были быть установлены дренажные каналы для отвода дождевой воды и других водных потоков от автомагистрали.|Ранее построенные дренажные каналы вдоль автомагистрали были облицованы предварительно отлитым бетоном для предотвращения их размывания. Когда осуществлялся следующий этап строительства, было обнаружено, что в новом канале невозможно установить предварительно отлитый бетон: места для размещения крупногабаритной техники не было. С учетом всех обстоятельств, для проекта был выбран материал CCX-M®. Это позволило выполнить всю работу в течение недели с минимальным количеством оборудования.',{ph:["cc-65686-1"],url:'https://www.concretecanvas.com/project/ccx-m-channel-lining-a33-cuneo-italy/'}]]},
+ {id:'rail',name:'Железные дороги',sub:'Железные',up:'ЖЕЛЕЗНЫЕ ДОРОГИ',ic:'ix-rail',
+  h:'Concrete Canvas® в строительстве железных дорог',intro:'Скорость и простота укладки Concrete Canvas® делают его идеальным инструментом для выполнения ответственных задач на железнодорожных путях. Установка материала позволяет избежать проблем, связанных с применением традиционных видов бетона, например, отскоков при торкрет-бетонировании, а также привлечения громоздкого оборудования. Таким образом, железнодорожные работы могут продолжаться без длительной остановки движения поездов.',
+  cases:[['Защита наземной инфраструктуры','Грузия, Тбилиси','Август 2023','ССX-M','В данном проекте СCХ-М был использован для укрепления склонов с целью защиты наземной инфраструктуры: железнодорожных путей. Работы необходимо было проводить в стесненных условиях. Для размотки рулонов ССХ-М использовался кран. Работы проводились силами бригады из 5 человек с привлечением альпинистов. Всего было уложено 1850 м² за 2 дня.'],
+   ['Защита канала от размыва','Великобритания, Нортгемптоншир','Февраль 2024','CCT2','GCCM был использован для облицовки канала и обеспечения его долгосрочной защиты от стоков воды. Канал расположен вблизи железнодорожной линии. Поскольку опалубка V-образного желоба выходила из строя, изначально планировалось, что канал будет забетонирован. Однако заказчики отказались от заливки желоба монолитным бетоном, поскольку для его установки требовалось использовать как опалубку, так и фасадную кладку. CCT2 стал наиболее подходящим решением для данного объекта. Всего было установлено 4400 м² бетонного полотна.'],
+   ['Облицовка дренажного канала','Великобритания, Сомерсет','Август 2021','CCТ2','Бетонное полотно было установлено для защиты от эрозии дренажного канала вдоль железнодорожной линии. Линия проходит по крутой просеке, которая размывалась поверхностными водами с прилегающих сельскохозяйственных угодий. Ранее уже был проложен канал для предотвращения размывания просеки стоками воды, однако со временем он сильно зарос растительностью. Всего было установлено 1000 м² CCT2. Облицовка канала позволит предотвратить обрушения склона и подавить рост растительности'],
+   ['Регулирование водных потоков','Великобритания, Шотландия','Июль 2020','CCT2','В 2020 году был выполнен монтаж бетонного полотна CCT2 в Шотландии. Проект реализован с целью облицовки двух дренажных каналов, проложенных для отведения воды от железной дороги и направления ее в нужное русло к новому дренажу сточных вод и естественным водотокам. Облицовка бетонным полотном предотвратила размыв поверхности склона, что могло привести к оползням и локальному затоплению железнодорожных путей. Всего было установлено более 2500 м² материала.']]},
+ {id:'oil',name:'Нефтегазовая промышленность',sub:'Нефтегазовая',up:'НЕФТЕГАЗОВАЯ ПРОМЫШЛЕННОСТЬ',ic:'ix-oil',
+  h:'Concrete Canvas® в нефтегазовых проектах',intro:'Компании по всему миру выбирают Concrete Canvas® (CC) и CC Hydro™ (CCH) для установки на объектах нефтегазовой промышленности. CC и CCH в основном используются для предотвращения развития эрозии и вторичной изоляции. Укладка материала требует минимального количества оборудования или не требует его вовсе, что исключает риск попадания обратных брызг, мусора и отскоков. CC и CCH монтируются в разы быстрее традиционных альтернатив, сокращая время работы подрядчиков на объекте и время вывода его из эксплуатации.',
+  cases:[['Герметизация защитной дамбы','Казахстан, Атырауская область','Август 2023','ССX-M','В этом проекте GCCM был применен для укрепления и герметизации защитной дамбы вокруг сбросной емкости насосно-перекачивающей станции. Работы были выполнены в течение 1 дня и не потребовали существенных затрат. Использование ССХ-М позволило значительно сократить сроки строительства – скорость монтажа полотна составила до 300 м² за смену 8 часов при численности рабочей бригады – 6 человек.'],
+   ['Восстановление защитных дамб','Колумбия, Акация','Июль 2023','CCHT1','Бетонное полотно CC Hydro (CCHT) было выбрано для проекта по облицовке и восстановлению вторичных защитных дамб на нефтехранилище. Как существующие облицованные, так и необлицованные вторичные защитные дамбы были разрушены эрозией, вызванной ливнями и ветрами. В общей сложности 2250 м² материала было смонтировано менее чем за 20 дней, несмотря на очень неблагоприятные погодные условия в ходе выполнения работ.',{ph:["cc-70274-1", "cc-70274-2", "cc-70274-3", "cc-70274-4"],url:'https://www.concretecanvas.com/project/cch-remediation-acacias-colombia/'}],
+   ['Предотвращение инфильтрации дождевой воды','Катар, Мена','Ноябрь 2020','ССT2','В рамках проекта по защите склонов на нефтехимическом предприятии было установлено бетонное полотно CCT2. Защитная дамба на территории предприятия постепенно разрушалась процессами эрозии, что создавало опасность для дорожного движения из-за возможного обрушения грунта и других материалов на дорогу внизу. Команда из 6 человек выполнила работы в 3 этапа за 26 дней, всего было смонтировано 4 700 м² материала.',{ph:["cc-44283-1"],url:'https://www.concretecanvas.com/project/cc-bund-lining-halul-island-qatar/'}]]},
+ {id:'other',name:'Другие отрасли',sub:'Другие отрасли',up:'ДРУГИЕ ОТРАСЛИ',ic:'ix-other',
+  h:'Другие отрасли, где применяется Concrete Canvas®',intro:'Бетонное полотно имеет широкий спектр применений. Гибкость, быстрый ввод в эксплуатацию и долговечность — вот почему заказчики выбирают Concrete Canvas® уже много лет.',
+  cases:[['Гидроизоляция мусорного полигона','Великобритания, Эббв Вале, Южный Уэльс','Июнь 2015','CC13, Bulk Rolls','Бетонное полотно было использовано для гидроизоляции и защиты от эрозии откосов мусорного полигона.'],
+   ['Дизайн мебели','Швеция, Стокгольм','Май 2017','CC5™','Дизайнер из Швеции Надя Забихи в рамках дипломной работы создала уникальный проект, находящийся на стыке искусства ремесла и бетона. Небольшая коллекция минималистичной мебели помогла ей открыть новый способ применения бетонного полотна Concrete Canvas®. В коллекцию вошли два стола, скамейка и пьедестал для растений.',{ph:["cc-14469-1"],url:'https://www.concretecanvas.com/project/cc-design-nadia-zabihi-sweden/'}],
+   ['Подавление растительности под трубопроводами','Великобритания, Западный Йоркшир, Ноустроп','Январь 2019','CC5™','Для борьбы с сорняками под трубопроводом на заводе по обработке осадков в Лидсе было использовано бетонное полотно вида CC5™. При прокладке новой магистрали диаметром 350 мм на заводе очистных сооружений потребовалось проложить под трубами слой бетона для подавления нежелательной растительности. Предполагалось, что такая прокладка устранит риск повреждения труб во время технического обслуживания.|Заказчик выбрал Concrete Canvas®, так как материал неоднократно применялся в проектах по подавлению растительности. В период с 19 января по 19 апреля 2019 года команда из двух человек установила 500 м² CC5 одновременно с монтажом подъёмной магистрали.',{ph:["cc-16713-1"],url:'https://www.concretecanvas.com/project/cc-weed-suppression-knostrop-leeds-uk/'}]]}];
+const PHOTOS=['k4','k30','k25','k16','k20','k2','k23','k5','k18','k13','k24','k12','k14','k26','k15','k3','hero','slide1','slide3','i1','i2','i3','a1','a2','a3','a4','lay1','lay2','lay3','lay4','cct-c3','ccx-c2'];
+
+/* ---------- блоки ---------- */
+const img=n=>`../img/${n}.jpg`;
+const hero=(bg,title,cls='')=>`<section class="phero" style="background-image:url(${img(bg)})"><h1 class="tbox ${cls}">${title}</h1></section>`;
+const heroLogo=(bg,logo)=>`<section class="phero" style="background-image:url(${img(bg)})"><img class="logo-box" src="${logo}" alt=""></section>`;
+const heroPlain=(title,cls='pale',sand=false)=>`<section class="phero plain" ${sand?'style="background:var(--sand)"':''}><h1 class="tbox ${cls}">${title}</h1></section>`;
+const subnav=(items,active)=>`<nav class="subnav" aria-label="Раздел"><div class="wrap">${items.map(([h,t])=>`<a href="${h}.html" class="${h===active?'on':''}">${t}</a>`).join('')}</div></nav>`;
+const SUB_PROD=[['cct','ССТ'],['ccx','СCX'],['cchydro','CC Hydro'],['deploy','DEPLOY']];
+const SUB_APPS=APPS.map(a=>['app-'+a.id,a.name]);
+const SUB_IND=IND.map(i=>['pr-'+i.id,i.sub]);
+const SUB_MEDIA=[['media','Брошюры'],['media-layouts','Примеры укладок']];
+const contactLine=()=>`<div class="wrap contact-line">Связаться с нами для получения подробной информации<button class="btn js-order">Оставить заявку</button></div>`;
+const dlBtn=(t='Скачать')=>`<button class="dl js-dl">${DL}${t}</button>`;
+const advBox=(title,list)=>`<section class="adv-band"><div class="wrap"><div class="adv-box rv"><h3>${title}</h3>${list.map(([b,t])=>`<p><b>${b}</b>${t}</p>`).join('')}</div></div></section>`;
+const supplyCases=(list)=>`<div class="cases">${list.map(([im,t])=>`<div class="case rv"><img src="${img(im)}" alt="${esc(t)}"><div class="cap">${t}${dlBtn()}</div></div>`).join('')}</div>`;
+const bcards=(list)=>`<div class="bcards">${list.map(([h,t])=>`<div class="bcard rv"><h4>${h}</h4><p>${t}</p></div>`).join('')}</div>`;
+const sliderHTML=(imgs,cls='inset')=>`<section class="slider ${cls} js-slider" aria-roledescription="carousel"><div class="slides">${imgs.map(i=>`<img src="${img(i)}" alt="">`).join('')}</div><button class="arrow prev" aria-label="Назад">${ARRL}</button><button class="arrow next" aria-label="Вперёд">${ARR}</button><div class="dots"></div></section>`;
+const PRINC_IC=[
+ `<svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="6"><circle cx="60" cy="60" r="55"/><path d="M15 75h90M28 60c8-8 16 0 24-6M30 48c8-8 16 0 24-6" stroke-linecap="round"/><path d="M70 30c6 10 12 16 12 24a12 12 0 0 1-24 0c0-8 6-14 12-24z" fill="currentColor"/><path d="M20 82l12 12M40 82l12 12M60 82l12 12M80 82l12 12" stroke-width="4"/></svg>`,
+ `<svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="6"><circle cx="60" cy="60" r="55"/><path d="M30 40h30v18c0 10-8 16-16 16h-6M44 30v10" stroke-linecap="round"/><circle cx="76" cy="40" r="2" fill="currentColor"/><circle cx="84" cy="34" r="2" fill="currentColor"/><circle cx="84" cy="46" r="2" fill="currentColor"/><path d="M62 70l42 0M70 82l8 8M84 82l8 8M60 92l8 8" stroke-width="4"/></svg>`,
+ `<svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="6"><circle cx="60" cy="60" r="55"/><path d="M18 52l84 24M32 30l40 44" stroke-linecap="round"/><path d="M60 60l16 22 18-8" stroke-width="10"/><path d="M24 84l10 10M44 88l10 10" stroke-width="4"/></svg>`,
+ `<svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="6"><circle cx="60" cy="60" r="55"/><path d="M8 40h104M8 74h104"/><rect x="32" y="50" width="56" height="18"/><path d="M22 84v14M98 84v14"/></svg>`];
+const principles=()=>`<section class="grey-sec sec"><div class="wrap"><h2 class="h3 center">Принципы установки материала</h2><div class="princ">${[['ЗАКРЕПИТЕ СС','Герметичность по краям — залог долговечности. Не допускайте попадания воды или ветра под полотно — особенно по периметру и в местах стыков.'],['ИЗБЕГАЙТЕ ПУСТОТ','Основание должно быть ровным и плотным. Перед укладкой убедитесь, что поверхность хорошо уплотнена, стабильна и имеет равномерный, гладкий рельеф.'],['ЗАЩИТИТЕ СТЫКИ','Каждый нахлест должен быть зафиксирован. Все слои полотна должны быть прочно соединены и закреплены к основанию.'],['ОБИЛЬНО УВЛАЖНЯЙТЕ','Только полное смачивание гарантирует прочность. Используйте достаточное количество воды для гидратации материала. Обеспечьте условия для затвердевания.']].map(([h,t],i)=>`<div class="rv">${PRINC_IC[i]}<h4>${h}</h4><p>${t}</p></div>`).join('')}</div></div></section>`;
+const formHTML=(id,{area=true}={})=>`<form class="form js-form" id="${id}" novalidate>
+ <input id="${id}-name" required placeholder="Name" autocomplete="name"><input id="${id}-company" placeholder="Company name" autocomplete="organization">
+ <input id="${id}-phone" required type="tel" placeholder="Phone" autocomplete="tel"><input id="${id}-email" type="email" placeholder="Email" autocomplete="email">
+ ${area?`<input id="${id}-area" placeholder="Required coverage area, m²"><input id="${id}-where" placeholder="Where it will be used">`:''}
+ <textarea class="full" id="${id}-msg" placeholder="Your comments, wishes or questions"></textarea>
+ <div class="fattach"><label class="file"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 4v16M4 12h16"/></svg><span>Attach a file</span><input type="file" id="${id}-file"></label><p class="hint">You can send us a technical specification, a photo of the site, a diagram, a drawing or any other document that explains or illustrates the task</p></div>
+ <div class="captcha" role="checkbox" aria-checked="false" tabindex="0"><span class="box"></span><span>I'm not a robot<small>Click to continue</small></span></div>
+ <div class="fsend full"><button class="btn solid" type="submit">Send</button><p class="hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg>Your data will not be shared with third parties</p></div>
+ <label class="agree full"><input type="checkbox" id="${id}-agree" required> I agree to the <a href="policy.html">processing of my personal data</a>.</label>
+ <p class="okmsg full" hidden>Thank you! Your request has been received — we will contact you shortly.</p>
+</form>`;
+
+/* ---------- страницы ---------- */
+const ICO={
+'ic-slopes':`<path d="M10 50 L54 22 V50 Z" class="f"/><path d="M10 45 L54 17" class="b"/><path d="M15 42 l2.5 4 M49 20.5 l2.5 4" class="t"/><path d="M14 52 l6 -4 M24 52 l10 -6.5 M36 52 l14 -9" class="h"/>`,
+'ic-canals':`<path d="M8 25 H17 L24 43 H40 L47 25 H56" class="t"/><path d="M17 25 L24 43 H40 L47 25" class="b"/><path d="M22 34 q3 -2 6 0 t6 0 t6 0 t4 0" class="t"/><path d="M12 48 l5 -5 M22 52 l5 -5 M34 52 l5 -5 M46 48 l5 -5" class="h"/>`,
+'ic-veg':`<path d="M10 38 H54" class="b"/><path d="M32 38 V25 M32 30 c-7 0 -9 -5 -9 -8 c5 0 9 3 9 8 M32 27 c6 0 8 -4 8 -7 c-5 0 -8 3 -8 7" class="t"/><path d="M20 14 L44 34" class="t x"/><path d="M14 46 l5 -5 M26 50 l7 -7 M40 50 l7 -7" class="h"/>`,
+'ic-filter':`<path d="M8 22 H16 L22 38 H42 L48 22 H56" class="t"/><path d="M16 22 L22 38 H42 L48 22" class="b"/><path d="M19 30 H45 L42 38 H22 Z" class="f"/><path d="M32 43 c-2.5 3 -3.5 5 -3.5 6.5 a3.5 3.5 0 0 0 7 0 c0 -1.5 -1 -3.5 -3.5 -6.5 Z" class="t"/><path d="M26 41 L38 54" class="t x"/>`,
+'ic-dams':`<path d="M16 48 L27 28 H39 L52 48 Z" class="f"/><path d="M16 48 L27 28 H39 L52 48" class="b"/><path d="M4 42 q3 -2 6 0 t6 0" class="t"/><path d="M6 48 q3 -2 6 0" class="t"/><path d="M26 40 l6 -6 M34 42 l8 -8" class="h"/>`,
+'ic-repair':`<path d="M14 20 V30 a18 18 0 0 0 36 0 V20" class="b"/><path d="M14 20 V30 a18 18 0 0 0 36 0 V20" class="t o" transform="translate(0 6)"/><path d="M31 41 l2 -3 l-2 -3 l2 -3" class="t"/><path d="M48 8 v8 M44 12 h8 M54 20 v4 M52 22 h4" class="t"/>`,
+'ix-mining':`<path d="M18 48 L42 20" class="b"/><path d="M30 14 q12 0 20 12" class="b"/><path d="M46 48 L24 23" class="b"/><path d="M15 23 l7 -7 l8 8 l-7 7 Z" class="f s"/>`,
+'ix-agro':`<path d="M32 52 V14" class="b"/><g class="t"><path d="M32 22 c-5 -1 -7 -5 -7 -8 c4 1 7 4 7 8 Z"/><path d="M32 22 c5 -1 7 -5 7 -8 c-4 1 -7 4 -7 8 Z"/><path d="M32 32 c-6 -1 -8 -5 -8 -8 c5 1 8 4 8 8 Z"/><path d="M32 32 c6 -1 8 -5 8 -8 c-5 1 -8 4 -8 8 Z"/><path d="M32 42 c-6 -1 -8 -5 -8 -8 c5 1 8 4 8 8 Z"/><path d="M32 42 c6 -1 8 -5 8 -8 c-5 1 -8 4 -8 8 Z"/></g>`,
+'ix-road':`<path d="M14 52 L28 12 H36 L50 52 Z" class="f"/><path d="M14 52 L28 12 M50 52 L36 12" class="b"/><path d="M32 48 v-6 M32 36 v-5 M32 26 v-4 M32 18 v-3" class="t"/>`,
+'ix-rail':`<path d="M22 52 L29 12 M42 52 L35 12" class="b"/><path d="M17 46 H47 M20 36 H44 M23 27 H41 M25.5 19 H38.5" class="t"/>`,
+'ix-oil':`<path d="M22 52 L30 12 H34 L42 52" class="b"/><path d="M25 42 H39 M27 32 H37 M29 22 H35 M25 42 L37 32 M39 42 L27 32 M27 32 L35 22 M37 32 L29 22" class="t"/><path d="M16 52 H48" class="b"/>`,
+'ix-other':`<rect x="15" y="15" width="14" height="14" rx="4" class="f s"/><rect x="35" y="15" width="14" height="14" rx="4" class="t"/><rect x="15" y="35" width="14" height="14" rx="4" class="t"/><path d="M42 36 v12 M36 42 h12" class="b"/>`};
+const ico=(n,cls='')=>`<svg class="ico ${cls}" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="31" class="disc"/><g>${ICO[n]}</g><circle cx="32" cy="32" r="31" class="ring"/></svg>`;
+
+const HIDDEN=/^(news|media|demopark)/;
+const P={};
+P.home=()=>$('#tpl-home').innerHTML;
+
+P.material=()=>`${hero('k4','О материале')}
+<nav class="subnav"><div class="wrap">${[['m-desc','Описание материала'],['m-adv','Преимущества материала'],['m-supply','Форма поставки'],['m-install','Как проходит монтаж'],['m-cmp','Сравнение с другими материалами']].map(([i,t])=>`<button data-scroll="${i}">${t}</button>`).join('')}</div></nav>
+<section class="sec wrap" id="m-desc"><h2 class="h3 center" style="margin-bottom:30px">Что такое бетонное полотно Concrete Canvas®?</h2><div class="prose c">
+<p>Гибкое, трехмерно армированное сеткой из полиэфирных нитей полотно, наполненное сухой бетонной смесью. Материал затвердевает после смачивания водой и формирует тонкий, прочный и водонепроницаемый слой. Уже через 24 часа после смачивания конструкция из бетонного полотна набирает 80% прочности и готова к эксплуатации.</p>
+<p>Мы предлагаем несколько видов бетонного полотна: Concrete Canvas® (CC), CCX™ и CC Hydro™ (CCH). Вся продукция производится в Великобритании и экспортируется по всему миру.</p>
+<p>Материалы поставляются в рулонах и имеют диапазон толщин от 5 до 11 мм. Рулонная компоновка разработана для удобства проведения работ по формированию бетонного покрытия заданной толщины и формы. Технология нанесения песчано-цементной смеси в оболочку заданной толщины является более технологичной альтернативой традиционным строительным смесям на основе вяжущих элементов и многократно ускоряет проведение работ по строительству бетонных конструкций.</p></div></section>
+<section class="video-band"><div class="wrap"><button class="video-box js-video" style="all:unset;cursor:pointer;display:grid;place-items:center;align-content:center;gap:30px;color:#fff;text-align:center;border:2px solid #fff;max-width:1420px;margin:0 auto;aspect-ratio:1420/479;position:relative;width:100%"><svg viewBox="0 0 150 150" fill="none" stroke="#fff" stroke-width="5"><circle cx="75" cy="75" r="70"/><path d="M60 45v60l45-30z"/></svg><h3 class="h2">Коротко о том, что такое бетонное полотно</h3></button></div></section>
+<section class="blue-sec sec" id="m-adv"><div class="wrap"><h2 class="h3">Преимущества материала</h2><div class="mcards">${[['k4','Скорость укладки','До 200 м² в час силами бригады из 3 человек — в разы быстрее традиционного бетона.'],['k13','Простота укладки','Не нужны бетономешалки и опалубка: полотно раскатывают, режут ручным инструментом и смачивают водой.'],['k2','Долговечность','Сертифицированный срок службы — 120 лет. Материал устойчив к ультрафиолету, истиранию и химическим воздействиям.'],['k20','Прочность','Армирование 3D-сеткой из полиэфирных волокон предотвращает растрескивание и поглощает ударные нагрузки.'],['k30','Универсальность','Склоны, каналы, дамбы, резервуарные парки, ремонт лотков и труб — одно решение для разных задач.'],['k15','Сокращение расходов на логистику','Рулон заменяет десятки бетоновозов: негидратированное полотно весит до 15 раз меньше слоя бетона.']].map(([im,h,t])=>`<div class="mcard rv"><img src="${img(im)}" alt=""><button aria-expanded="false">${h}<svg><use href="#chev"/></svg></button><p class="more-t" hidden>${t}</p></div>`).join('')}</div></div></section>
+<section class="sec wrap" id="m-supply"><h2 class="h3">Форма поставки</h2><div class="prose" style="margin-top:20px"><p>Бетонное полотно Concrete Canvas® производится в трех толщинах: 5мм, 7мм и 11мм (марки ССТ1, ССТ2 и CCT3 соответственно). Форма выпуска бетонного полотна — большие, компактные и широкие рулоны.</p></div>
+<div class="supply">${[['k14','Большие рулоны','Можно закрепить на траверсе или ковше экскаватора для удобства и быстрого монтажа.'],['k15','Компактные рулоны','Разворачиваются вручную — подходят для участков с ограниченным доступом техники.'],['k16','Широкие рулоны','Сокращают количество швов и ускоряют укладку на больших площадях.']].map(([im,b,t])=>`<div class="rv"><img src="${img(im)}" alt=""><p><b>${b}</b>${t}</p></div>`).join('')}</div>
+<div class="tbl-wrap"><table class="spec"><thead><tr><th>Тип СС</th><th>Толщина (мм)</th><th>Ширина рулона (м)</th><th>Большой рулон (м²)</th><th>Компактный рулон (м²)</th></tr></thead><tbody><tr><td>CCT1™</td><td>5</td><td>1,0</td><td>200</td><td>10</td></tr><tr><td>CCT2™</td><td>7</td><td>1,1</td><td>125</td><td>5</td></tr><tr><td>CCT3™</td><td>11</td><td>1,1</td><td>80</td><td>—</td></tr></tbody></table></div></section>
+<section class="sec wrap" id="m-install" style="padding-top:0"><h2 class="h3">Как проходит монтаж</h2><div class="steps">${[
+ ['1. Подготовка поверхности','Бетонное полотно может укладываться на любую поверхность. Материал принимает форму основания, на которое производится укладка. Профилирование и выравнивание поверхности производится в соответствии с проектными решениями и с целью придания конструкции эстетического вида. Перед монтажом может быть необходимо выровнять поверхность – удалить растительность и все острые и выступающие предметы. При укладке на грунт поверхность утрамбовать и устранить пустоты. При восстановлении бетонных конструкций – срезать выступающую арматуру и заделать большие трещины.','k22'],
+ ['2. Развертывание рулона и укладка','Бетонное полотно разворачивается вручную или с помощью траверсы, закрепленной на подъемном механизме, или с использованием других устройств для разматывания рулонных материалов. Полотно режется с помощью ручного строительного инструмента (ножа, канцелярского лезвия или дисковой пилы). Материал укладывается волокнистой поверхностью сверху (водонепроницаемая пвх мембрана снизу). Отрезки полотна укладывать внахлест с напуском не менее 10 см (продольно или поперек) по направлению потока воды.','k25'],
+ ['3. Крепление к основанию','При укладке на грунт для фиксации бетонного полотна необходимо создать анкерные траншеи, куда нужно уложить края полотна и скрепить их с грунтом с помощью г- или п-образных металлических анкеров. Величина заглубления, как и размеры анкерных траншей, могут варьироваться в зависимости от типа грунта основания и назначения сооружения. Место расположения траншей: на площадных объектах (лагунах и накопителях) – по периметру сооружения, при укладке на откос – по верху откоса, при строительстве каналов и других линейных сооружений (каре, обваловок) – по обеим сторонам сооружения. Анкеры можно изготовить из арматурной стали диаметром 7-9 мм. При укладке на бетонное или каменное основание для крепления используются анкерные болты, цементный раствор или иной крепеж.','k13'],
+ ['4. Соединение отрезков бетонного полотна между собой','В местах перехлеста при укладке на грунт отрезки бетонного полотна скрепляются между собой с помощью саморезов шагом в 10-20 см и с отступом от края 5 см. Длина самореза может варьироваться в зависимости от толщины полотна и способа соединения от 10 до 40 мм. При укладке на бетонную поверхность применяют дюбель-гвозди. При необходимости обеспечения гидроизоляции в месте перехлеста полотен можно использовать клей-герметик или аппарат термический сварки.','k24'],
+ ['5. Смачивание','При смачивании не требуется соблюдать водоцементное отношение, технология бетонного полотна позволяет погружать материал прямо в воду. Невозможно чрезмерно смочить материал, но не стоит рассчитывать на дождевые осадки как на источник увлажнения. Для смачивания подходит как пресная, так и соленая вода. Смачивание производить путем разбрызгивания, используя распылительную насадку (не под напором). Минимальный объем воды составляет 50% от веса полотна: сс5 – 3.5 л/м², сс8 - 6 л/м², сс13 – 8.5 л/м². При жаркой погоде и при укладке полотна на наклонную поверхность объем воды необходимо увеличить.','k2']].map(([h,t,im],i)=>`<div class="step rv"><div class="stxt"><h4>${h}</h4><div class="prose"><p>${t}</p></div></div><figure><img src="${img(im)}" alt=""><span>${i+1}</span></figure></div>`).join('')}</div></section>
+<section class="sec wrap" id="m-cmp" style="padding-top:0"><h2 class="h3">Сравнение с другими материалами</h2><div class="tbl-wrap"><table class="cmp"><thead><tr><th>Инженерное решение</th><th>Монтаж</th><th>Потребность в технике</th><th>Потребность в рабочей силе</th><th>Стоимость</th><th>Температура монтажа</th><th>Срок службы</th></tr></thead><tbody>
+<tr><td>Бетонное полотно</td><td class="g">Высокая скорость</td><td class="g">Низкая зависимость</td><td class="g">Низкая зависимость</td><td class="y">Средняя</td><td class="g">До −10 °C</td><td class="g">120 лет</td></tr>
+<tr><td>Монолитный бетон</td><td class="r">Низкая скорость</td><td class="r">Высокая зависимость</td><td class="r">Высокая зависимость</td><td class="y">Средняя</td><td class="y">Выше +5 °C</td><td class="g">Высокий</td></tr>
+<tr><td>Торкрет-бетон</td><td class="y">Средняя скорость</td><td class="r">Высокая зависимость</td><td class="y">Средняя зависимость</td><td class="r">Высокая</td><td class="y">Выше +5 °C</td><td class="y">Средний</td></tr>
+<tr><td>Железобетонные плиты</td><td class="y">Средняя скорость</td><td class="r">Высокая зависимость</td><td class="y">Средняя зависимость</td><td class="r">Высокая</td><td class="g">Не зависит</td><td class="g">Высокий</td></tr>
+<tr><td>Габионы</td><td class="r">Низкая скорость</td><td class="y">Средняя зависимость</td><td class="r">Высокая зависимость</td><td class="y">Средняя</td><td class="g">Не зависит</td><td class="y">Средний</td></tr></tbody></table></div></section>`;
+
+P.products=()=>`${subnav(SUB_PROD,'')}<section class="phero" style="background-image:url(../img/k26.jpg)"><h1 class="tbox">Продукция</h1></section>
+<section class="sec wrap"><h2 class="h3 center" style="margin-bottom:30px">Эффективная противоэрозионная защита и надежная гидроизоляция</h2><div class="prose c">
+<p><a class="blue" href="cct.html">CCT</a> — универсальное строительное решение, применяемое для защиты любых оснований и конструкций от разрушения, выветривания и применимо на склонах, водоотводных каналах, сдерживания роста растительности.</p>
+<p><a class="blue" href="cchydro.html">CC Hydro</a> — разработан для сдерживания различных реагентов в проектах, связанных с добычей и хранением полезных ископаемых, например, на защитных обваловках, накопителях, хвостовых тоннелях.</p>
+<p><a class="blue" href="ccx.html">CCX</a> — новейшее дополнение к семейству CC. Материал разработан специально для защитной облицовки масштабных гидротехнических сооружений, таких как крупные ирригационные каналы, защитные дамбы и береговые склоны.</p>
+<p><a class="blue" href="deploy.html">DEPLOY</a> — инновационные быстровозводимые резервуары для жидких продуктов на основе технологии ССНТ.</p>
+<p style="margin-top:14px">Для получения подробной информации выберете интересующий вас продукт:</p></div>
+<div class="tiles">${[['cct','p-cc','Concrete Canvas'],['ccx','p-ccx','CCX'],['cchydro','p-hydro','CC Hydro'],['deploy','p-deploy','DEPLOY']].map(([h,im,a])=>`<a href="${h}.html" class="rv"><img src="${img(im)}" alt="${a}"></a>`).join('')}</div></section>`;
+
+P.cct=()=>`${subnav(SUB_PROD,'cct')}<section class="hero" style="background-image:url(../img/k5.jpg)"><img src="../img/badge.png" alt="Concrete Canvas"></section>
+<section class="sec wrap"><h1 class="h-sec center" style="font-weight:500;margin-bottom:50px">Бетонное полотно Concrete Canvas®</h1>
+<div class="two"><div class="prose"><p style="text-align:center">ССТ — универсальное строительное решение, применяемое для защиты любых оснований и конструкций от разрушения, эрозии, выветривания, которые эксплуатируются в различных условиях. Внутренняя армирующая структура состоит из 3Д сетчатой матрицы, соединяющее верхний тканный геотекстиль с нижней изолирующей мембраной.</p>
+<div><p>Доступны три вида, различающихся по толщине и типу:</p><ul><li>ССТ1™ (тип I) толщиной 5 мм, шириной 1,0 м</li><li>ССТ2™ (тип II) толщиной 7 мм, шириной 1,1 м</li><li>ССТ3™ (тип III) толщиной 11 мм шириной 1,1 м</li></ul></div></div>
+<div style="display:grid;justify-items:center;gap:24px"><img src="../img/cct-layers-en.jpg" alt="Структура бетонного полотна CCT" style="width:min(600px,100%)">${`<button class="btn js-dl">Скачать брошюру</button>`}</div></div></section>
+${advBox('Ключевые преимущества ССТ',[['Прочность','Уникальная армированная структура предотвращает растрескивание, поглощает ударные нагрузки и обеспечивает стабильность конструкции.'],['Долговечность','Concrete Canvas® в 5 раз устойчивее к истиранию, чем обычный бетон. Обладает высокой химической стойкостью, устойчив к погодным условиям и ультрафиолету. Сертифицирован BBA и сохраняет свои свойства более 120 лет при использовании для защиты от эрозии.'],['Гибкость','Материал легко принимает форму поверхности и огибает существующие конструкции. В ненастывшем состоянии легко режется и подгоняется с помощью простых инструментов.'],['Гидроизоляция','Специальная ПВХ-мембрана делает материал полностью водонепроницаемым.'],['Предотвращение эрозии','Гидроизолирующий слой из ПВХ предотвращает фильтрацию воды и размыв основания даже при значительных движениях грунта — проседании или морозном пучении.']])}
+<section class="sec wrap"><h2 class="h3" style="font-weight:500">Форма поставки</h2><div class="prose" style="margin-top:16px"><p>CC доступен в двух форматах: большие рулоны и компактные. Количество материала в рулоне отличается в зависимости от типа CC, как показано в таблице ниже</p></div>
+<div class="tbl-wrap"><table class="spec"><thead><tr><th>Тип СС</th><th>Толщина (мм)</th><th>Ширина рулона (м)</th><th>Вес в сухом виде (кг/м²)</th><th>Большой рулон (м²)</th><th>Компактный рулон (м²)</th></tr></thead><tbody><tr><td>CCT1™</td><td>5</td><td>1,0</td><td>7</td><td>200</td><td>10</td></tr><tr><td>CCT2™</td><td>7</td><td>1,1</td><td>12</td><td>125</td><td>5</td></tr><tr><td>CCT3™</td><td>11</td><td>1,1</td><td>19</td><td>80</td><td>—</td></tr></tbody></table></div>
+${supplyCases([['cct-c1','Защита дренажного канала, Швеция, 2024'],['cct-c2','Защита дренажного канала, Швеция, 2024'],['cct-c3','Защита дренажного канала, Швеция, 2024']])}</section>${contactLine()}`;
+
+P.ccx=()=>`${subnav(SUB_PROD,'ccx')}<section class="hero" style="background-image:url(../img/k26.jpg)"><img src="../img/p-ccx.jpg" alt="CCX" style="width:clamp(200px,22vw,400px);box-shadow:0 8px 30px rgba(0,0,0,.3)"></section>
+<section class="sec wrap"><h1 class="h-sec center" style="font-weight:500;margin-bottom:40px">Бетонное полотно CCX</h1><div class="prose c">
+<p>CCX используется преимущественно для облицовки профилированных поверхностей в системах противоэрозионной защиты. Материал состоит из двух взаимосвязанных слоев геотекстиля, внутри которых находится сухая бетонная смесь. CCX разработан специально для масштабных линейных проектов.</p>
+<p>Модификация CCX-MAT™ (CCX-M™) оснащена слоем LLDPE-геомембраны, обеспечивающей минимальную проницаемость. Этот вариант применяется для быстрого восстановления и облицовки каналов, значительно сокращая время и затраты на монтаж по сравнению с традиционными методами. Гидратация материала возможна как путем распыления воды, так и полным погружением. Благодаря этим характеристикам CCX-M™ оптимально подходит для ремонта и облицовки крупных каналов, включая ирригационные системы, продлевая срок их эксплуатации и снижая потери воды за счет фильтрации</p>
+<p style="margin-top:20px"><button class="btn js-dl">Скачать брошюру</button></p></div></section>
+<section class="ccxv"><div class="wrap ccxv-in"><div class="ccxv-t rv"><h2>О CCX-M®</h2><p><b>CCX-MAT® (CCX-M®)</b> имеет подложку из LLDPE толщиной 0,3 мм, благодаря которой материал обладает очень низкой проницаемостью. Композитное бетонное покрытие обеспечивает высокую долговечность и выдерживает значительные неравномерные подвижки грунта благодаря армирующим волокнам внутри структуры. Это ограничивает распространение трещин и сохраняет низкую проницаемость. Поэтому CCX-M® — идеальное решение для облицовки и ремонта каналов и ирригационных систем: он продлевает срок их службы и сокращает потери воды на фильтрацию. Соединение CCX-M® обычно выполняется комбинацией саморезов, клея-герметика и термической сварки.</p></div><figure class="ccxv-f rv"><img src="../img/ccxm-diag.jpg" alt="Структура CCX-M" width="1200" height="1062"></figure></div></section>
+<section class="ccxv grey"><div class="wrap ccxv-in rev"><figure class="ccxv-f rv"><img src="../img/ccxu-diag.jpg" alt="Структура CCX-U" width="1200" height="987"></figure><div class="ccxv-t rv"><h2>О CCX-U®</h2><p><b>CCX-UTILITY® (CCX-U®)</b> производится без геомембраны LLDPE — для задач, где проницаемость не критична. Он не подходит для гидротехнических объектов, таких как каналы, но может применяться для облицовки равномерно профилированных склонов, например, когда нужна защита от эрозии только от прямого воздействия ветра или дождя. CCX-U® также используется для защиты поверхности геомембран: он создаёт жёсткую броню от ударных повреждений и выветривания. Соединение CCX-U® выполняется комбинацией саморезов и термической сварки.</p></div></div></section>
+${advBox('Ключевые преимущества CCX',[['Высокая скорость монтажа','Монтаж СС можно осуществлять со скоростью 200 м²/час, что до 10 раз быстрее, чем при использовании традиционных бетонных растворов. Это позволяет оперативно проводить работу на важных объектах инфраструктуры, где время остановки технического обслуживания ограничено.'],['Устранение потерь на фильтрацию','CCX благодаря своей армирующей структуре и прочным геотекстильным слоям, обладает способностью пластично деформироваться и приспосабливаться к изменениям состояния грунтового основания, сохраняя при этом целостность и изолирующую способность всей конструкции.'],['Композитное решение','CCX сочетает в себе низкую проницаемость геомембраны с прочностью и долговечностью бетона. Монтаж CCX производится довольно быстро, и через 24 часа после гидратации CCX, образуется прочная бетонная облицовка, готовая к использованию.'],['Оптимальная логистика','Вес негидратированного CCX составляет 14,5-15,5 кг/м² в сравнении с ~220 кг/м² для 10 см слоя бетона. Это означает, что он, как правило, более чем в 10 раз эффективен в логистике.']])}
+<section class="sec wrap"><h2 class="h3" style="font-weight:500">Форма поставки</h2><div class="prose" style="margin-top:16px"><p>CCX поставляется в больших рулонах. Количество материала в рулоне отличается в зависимости от типа CCX®, как показано в таблице ниже.</p></div>
+<div class="tbl-wrap"><table class="spec"><thead><tr><th>Тип CCX</th><th>Толщина (мм)</th><th>Ширина рулона (м)</th><th>Вес в сухом виде (кг/м²)</th><th>Площадь покрытия большим рулоном (м²)</th><th>Длина большого рулона (м)</th></tr></thead><tbody><tr><td>CCX-U®</td><td>10,0</td><td>1,95</td><td>14,5-15,5</td><td>97,5</td><td>50</td></tr><tr><td>CCX-M™</td><td>10,3</td><td>1,9</td><td>14,5-15,5</td><td>95</td><td>50</td></tr></tbody></table></div>
+${supplyCases([['ccx-c1','Защита дренажного канала, Швеция, 2024'],['ccx-c2','Защита дренажного канала, Швеция, 2024'],['ccx-c3','Облицовка канала, Франция, 2023']])}</section>${contactLine()}`;
+
+P.cchydro=()=>`${subnav(SUB_PROD,'cchydro')}<section class="hero" style="background-image:url(../img/i3.jpg)"><img src="../img/p-hydro.jpg" alt="CC Hydro" style="width:clamp(200px,22vw,400px);box-shadow:0 8px 30px rgba(0,0,0,.3)"></section>
+<section class="sec wrap"><h1 class="h-sec center" style="font-weight:500;margin-bottom:50px">Бетонное полотно CC Hydro</h1>
+<div class="two"><div class="prose"><p>СС Hydro или ССНТ — материал, который сочетает в себе технологию GCCM ССТ и химически стойкую геомембранную основу с высокой степенью герметичности. Геомембрана обеспечивает высокоэффективное облицовочное решение с возможностью инструментального контроля швов для гарантированного качественного применения. Внутренняя армирующая структура состоит из 3D-сетчатой матрицы, соединяющее верхний тканный геотекстиль с нижней изолирующей мембраной ПВХ тощиной 1,0 мм.</p>
+<div><p>Доступны два вида, различающихся по толщине и ширине:</p><ul><li>ССНТ1™ (тип I) толщиной 6 мм, шириной 1,0 м</li><li>ССНТ2™ (тип II) толщиной 8 мм, шириной 1,1 м</li></ul></div></div>
+<div style="display:grid;justify-items:center;gap:24px"><img src="../img/cchydro-diag.jpg" alt="Структура CC Hydro" width="1524" height="1032" style="width:min(680px,100%);height:auto"><button class="btn js-dl">Скачать брошюру</button></div></div>
+<div class="prose c" style="border:1.5px solid var(--blue);padding:clamp(20px,4vw,60px);margin-top:60px"><p>ССНТ рекомендован в качестве герметичного противофильтрационного экрана для долговременного сдерживания агрессивных соединений, для устройства противофильтрационных сооружений и систем облицовки заградительных земляных обвалований и дамб. Применение ССНТ Hydro не ограничивается проектами сдерживания, также может быть использовано при гидроэнергетическом строительстве и в горнодобывающей промышленности, для защиты от эрозии, укрепления склонов, берегов рек и т.д.</p></div></section>
+${advBox('Ключевые преимущества CC Hydro',[['Абсолютная герметичность','CCHT обладает высокой водонепроницаемостью, подтвержденной независимыми испытаниями по стандарту BS-EN-1377. Гидравлическая проводимость свыше 1×10⁻¹² м/с – надежная защита от утечек!'],['Максимальная прочность','Жесткая защитная поверхность предохраняет геомембрану от проколов, истирания, суровых погодных условий, воздействия животных и ультрафиолета.'],['Устойчивость к агрессивным химическим соединениям','CCHT устойчив к агрессивным веществам – от нефтепродуктов до кислотных стоков. Идеален для объектов тяжелой промышленности.'],['Контроль качества швов','Специальная сварочная полоса позволяет проводить тестирование швов прямо на объекте, исключая дополнительные испытания. Быстро, просто, надежно!'],['Сохранение объема','CCHT может укладываться непосредственно на существующий профиль без потери объема, что особенно важно при реконструкции.']])}
+<section class="sec wrap"><h2 class="h3" style="font-weight:500">Форма поставки</h2><div class="prose" style="margin-top:16px"><p>CCHT поставляется в больших рулонах. Количество материала в рулоне отличается в зависимости от типа CCHT, как показано в таблице ниже.</p></div>
+<div class="tbl-wrap"><table class="spec"><thead><tr><th>Тип CCHT</th><th>Толщина (мм)</th><th>Ширина рулона (м)</th><th>Площадь покрытия большим рулоном (м²)</th></tr></thead><tbody><tr><td>CCHT1™</td><td>6</td><td>1,0</td><td>150</td></tr><tr><td>CCHT2™</td><td>8</td><td>1,1</td><td>100</td></tr></tbody></table></div>
+${supplyCases([['lay4','Облицовка пруда, Катар, 2023'],['lay2','Вторичная герметизация, Шотландия, 2023'],['a3','Облицовка канала, Саудовская Аравия, 2017']])}</section>${contactLine()}`;
+
+P.deploy=()=>`${subnav(SUB_PROD,'deploy')}<section class="hero" style="background-image:url(../img/dp-wide.jpg)"><img src="../img/p-deploy.jpg" alt="DEPLOY" style="width:clamp(200px,22vw,400px);box-shadow:0 8px 30px rgba(0,0,0,.3)"></section>
+<section class="sec wrap"><h1 class="h-sec center" style="font-weight:500;margin-bottom:40px">Резервуар 14R</h1><div class="prose c">
+<p>Бренд DEPLOY представляет Комплект 14R — быстровозводимый бетонный резервуар объемом 14 000 литров для хранения воды, который устанавливается за считанные часы. В комплект также входят инструменты и аксессуары для быстрого и простого монтажа.</p>
+<p>В условиях глобальных климатических изменений DEPLOY меняет подход к хранению воды, делая этот процесс более удобным и экологичным. Традиционные подходы требуют множества ресурсов на достаквку и установку, но 14R решает эти проблемы. Модель сочетает в себе прочность бетона и гибкость ткани, ускоряя установку и увеличивая срок службы.</p>
+<p>14R может обеспечить жизнедеятельность больниц, клиник, коммунальных объектов, электростанций, сельскохозяйственные угодья. Он также незаменим в чрезвычайных ситуациях, обеспечивая водой лагеря для переселенцев, мобильные госпитали, школы и другие важные объекты.</p>
+<p style="margin-top:20px"><button class="btn js-dl">Скачать брошюру</button></p></div></section>
+<section class="grey-sec sec"><div class="wrap two"><div class="prose"><p>Корпус и подложка 14R состоят из бетонного полотна Concrete Canvas. Благодаря прочности и водонепроницаемости CC, резервуар надежно удерживает жидкость, предотвращая утечки и защищая содержимое от внешних факторов. Бетонное полотно также устойчиво к механическим повреждениям, ультрафиолету, коррозии и химическим воздействиям, что значительно увеличивает срок службы резервуара.</p><p>В сложенном виде 14R занимает минимум места, но после развертывания и увлажнения его поверхность затвердевает, превращаясь в устойчивую монолитную конструкцию.</p></div><img src="../img/dp-tex.jpg" alt="Поверхность резервуара 14R" style="width:min(403px,100%);justify-self:end"></div></section>
+<section class="sec wrap"><h2 class="h3 center" style="font-weight:500;margin-bottom:40px">Почему стоит выбрать DEPLOY?</h2>${bcards(ADV6.slice(0,3).concat(ADV6.slice(0,3)))}</section>
+${sliderHTML(['dp-wide','hero','slide1'],'square')}${contactLine()}`;
+
+P.applications=()=>`${subnav(SUB_APPS,'')}<section class="phero" style="background-image:url(../img/k12.jpg)"><h1 class="tbox">Виды применения</h1></section>
+<section class="sec wrap"><h2 class="h2 center" style="margin-bottom:24px">Применение бетонного полотна Concrete Canvas</h2><div class="prose c"><p>Бетонное полотно это инновационный материал, открывающий широкие возможности применения в различных областях строительства. Его уникальные свойства и гибкость делают его незаменимым решением для укрепления береговых линий, облицовки каналов и прудов, а также для реализации других инженерных задач. Бетонное полотно является надежным и экономичным решением, обеспечивающим долговечность и устойчивость конструкций в различных условиях эксплуатации.</p><p>Узнайте больше о видах применения продукции Concrete Canvas ниже:</p></div>
+<div class="icgrid">${APPS.map(a=>`<a href="app-${a.id}.html" class="rv">${ico(a.ic)}${a.up}</a>`).join('')}</div></section>`;
+
+APPS.forEach(a=>{P['app-'+a.id]=()=>`${subnav(SUB_APPS,'app-'+a.id)}${hero(a.hero,a.name)}
+<section class="sec wrap center">${ico(a.ic,"app-ic")}<h2 class="h3" style="font-weight:600;margin-bottom:30px">${a.h}</h2><div class="prose c" style="font-weight:300">${a.p.map(t=>`<p>${t}</p>`).join('')}</div></section>
+${principles()}<section class="sec">${sliderHTML(a.gal)}</section>
+<section class="sec wrap" style="padding-top:0"><h2 class="h3 center" style="font-weight:600;margin-bottom:40px">Преимущества выбора Concrete Canvas</h2>${bcards(ADV6)}</section>${contactLine()}`});
+
+P.projects=()=>`${subnav(SUB_IND,'')}${heroPlain('Примеры работ')}
+<section class="sec wrap" style="padding-top:20px"><div class="prose c"><p>Concrete Canvas® является ведущей инновационной технологией, альтернативной бетону. Материал имеет широкий спектр применения: обеспечивает защиту от эрозии, укрепление конструкций и сооружений различной направленности, а также подавление растительности.</p><p>Использование бетонного полотна позволяет:</p><ul style="list-style-position:inside;padding:0"><li>повысить эксплуатационную надежность и срок службы сооружений различной направленности,</li><li>упростить технологию строительства, сократить сроки строительства,</li><li>уменьшить расход дорожно-строительных материалов, снизить объем подготовительных работ, уменьшить материалоемкость строительства.</li></ul></div>
+<h2 class="center" style="font-size:clamp(17px,1.25vw,24px);font-weight:600;margin-top:40px">Для получения подробной информации выберете интересующий вас продукт:</h2>
+<div class="icgrid">${IND.map(i=>`<a href="pr-${i.id}.html" class="rv">${ico(i.ic)}${i.up}</a>`).join('')}</div></section>`;
+
+IND.forEach((ind,k)=>{P['pr-'+ind.id]=()=>`${subnav(SUB_IND,'pr-'+ind.id)}${heroPlain(ind.name,'pale')}
+<section class="sec wrap center" style="padding-top:20px">${ico(ind.ic,"app-ic")}<h2 style="font-size:clamp(17px,1.25vw,22px);font-weight:600;margin-bottom:16px">${ind.h}</h2><div class="prose c"><p>${ind.intro}</p></div><p style="margin-top:30px"><button class="btn js-dl">Скачать брошюру</button></p>
+<h3 style="font-size:clamp(16px,1.15vw,20px);font-weight:600;margin-top:40px">Узнайте больше о возможностях бетонного полотна Concrete Canvas®:</h3></section>
+<section class="wrap" style="padding-bottom:60px">${ind.cases.map(([t,loc,d,prod,txt,own],j)=>{const ph=own?own.ph:[0,1,2,3].map(n=>PHOTOS[(k*5+j*3+n*4)%PHOTOS.length]);return `<article class="pcase rv"><div class="stage"><img class="main" src="${img(ph[0])}" alt="${esc(t)}"><span class="lbl">${t}</span>${ph.length>1?`<div class="thumbs">`:`<div class="thumbs" hidden>`}${ph.map((p,n)=>`<button aria-pressed="${n===0}" data-src="${img(p)}" aria-label="Фото ${n+1}"><img src="${img(p)}" alt=""></button>`).join('')}</div></div>
+<h3>${loc}</h3><div class="meta"><span><svg><use href="#cal"/></svg>${d}</span><span><svg><use href="#info"/></svg>${prod}</span></div><div class="prose">${txt.split('|').map(p=>`<p>${p}</p>`).join('')}</div>${own?`<a class="xlink" href="${own.url}" target="_blank" rel="noopener">Проект на сайте Concrete Canvas →</a>`:''}</article>`}).join('')}</section>`});
+
+P.news=()=>`<section class="sec wrap"><h1 class="h-sec" style="margin-bottom:50px">Новости</h1><div class="nlist" id="nlist">${NEWS.map(n=>`<a class="nrow rv" href="news-${n.id}.html"><img src="${img(n.img)}" alt=""><div class="t"><time>${n.date}</time><h3>${n.title}</h3><span class="lnk">Подробнее</span></div></a>`).join('')}</div>
+<div class="pager">${[1,2,3,4,5].map(i=>`<button aria-current="${i===1}" aria-label="Страница ${i}">${i}</button>`).join('')}</div></section>`;
+NEWS.forEach(n=>{P['news-'+n.id]=()=>`<section class="sec wrap"><p style="margin-bottom:24px"><a href="news.html" class="blue">← Все новости</a></p><div class="ndetail"><article><h1>${n.title}</h1><time>${n.date}</time><img class="big" src="${img(n.img)}" alt=""><div class="prose" style="margin-top:30px">${n.text.map(t=>`<p>${t}</p>`).join('')}</div>${n.gal?`<div class="ngal">${n.gal.map(g=>`<img src="${img(g)}" alt="">`).join('')}</div>`:''}</article>
+<aside class="side" aria-label="Другие новости">${NEWS.filter(x=>x.id!==n.id).map(x=>`<a href="news-${x.id}.html"><img src="${img(x.img)}" alt=""><span><small>${x.date}</small><b>${x.title}</b></span></a>`).join('')}</aside></div></section>`});
+
+P.media=()=>`${subnav(SUB_MEDIA,'media')}${heroPlain('Медиа','mid',true)}<section class="sec wrap"><h2 class="h2 center" style="margin-bottom:50px">Брошюры</h2><div class="brochures">${[['br1','Резервуары DEPLOY'],['br2','Геосинтетические цементные композитные маты'],['br3','Геосинтетические цементные композитные маты'],['br4','Облицовка и восстановление ирригационных каналов'],['br5','Управление водными ресурсами в горнодобывающем секторе']].map(([im,t])=>`<div class="broch rv"><img src="${img(im)}" alt="${esc(t)}"><div class="cap">${t}${dlBtn()}</div></div>`).join('')}</div></section>`;
+P['media-layouts']=()=>`${subnav(SUB_MEDIA,'media-layouts')}${heroPlain('Медиа','mid',true)}<section class="sec wrap"><h2 class="h2 center" style="margin-bottom:50px">Примеры укладок</h2><div class="lays">${[['lay1','Восстановление бетонных лотков, Шотландия'],['lay2','Восстановление резервуара, Центральная Европа'],['lay3','Обвалование площадки, Англия'],['lay4','Обвалование резервуарного парка, Финляндия'],['k4','Облицовка канала, Кыргызстан'],['k5','Раскатка полотна краном, Кыргызстан'],['k13','Укладка CCX-M, Кыргызстан'],['k12','Облицовка оросительного канала, Кыргызстан']].map(([im,t])=>`<div class="lay rv"><img src="${img(im)}" alt="${esc(t)}"><div class="cap">${t}${dlBtn()}</div></div>`).join('')}</div></section>`;
+
+P.demopark=()=>`<nav class="subnav"><div class="wrap" style="font-size:clamp(15px,1.25vw,24px);font-weight:500">Посетите демонстрационный парк United Concrete Canvas в Подмосковье</div></nav>${hero('k10','Демопарк')}
+<section class="sec wrap"><div class="dp-grid"><h2 class="h2" style="font-weight:600">Демонстрационный парк</h2><div class="prose"><p>Бетонное полотно Concrete Canvas было изобретено в 2005 году, но, поскольку для рынка стран СНГ эта строительная технология является инновационной, первоочередной задачей для нас стало знакомство с ней потенциальных заказчиков. Для реализации этой задачи в июле 2017 года в Подмосковье был открыт первый в мире демонстрационный парк, в котором представлены все основные варианты использования бетонного полотна Concrete Canvas.</p></div></div>
+<div class="dp-grid" style="margin-top:80px"><div><h2 class="h3" style="font-weight:600;margin-bottom:20px">Что вы увидите?</h2><div class="prose"><p>В демопарке United Concrete Canvas вы сможете увидеть и оценить следующие варианты применения бетонного полотна:</p></div></div><div class="two" style="gap:30px"><img src="${img('k1')}" alt="" style="aspect-ratio:1;object-fit:cover"><img src="${img('k7')}" alt="" style="aspect-ratio:1;object-fit:cover"></div></div>
+<div class="sq">${APPS.slice(0,4).map((a,i)=>`<figure class="rv"><img src="${img(['i1','slide3','a2','i3'][i])}" alt=""><figcaption>${a.name}</figcaption></figure>`).join('')}</div>
+<div class="dp-grid" style="margin-top:80px"><h2 class="h3" style="font-weight:600">Что вы узнаете?</h2><div class="prose"><p>В нашем демонстрационном парке представлены основные виды применения бетонного полотна Concrete Canvas. Любой желающий по предварительному согласованию с нашими специалистами может посетить демопарк и лично убедиться в заявленных характеристиках технологии. Мы ответим на все ваши вопросы, предоставим интересующую вас информацию, подробно расскажем о вариантах применения бетонного полотна Concrete Canvas конкретно в вашей сфере деятельности.</p></div></div></section>
+<section class="video-band"><div class="wrap"><button class="video-box js-video" style="all:unset;cursor:pointer;display:grid;place-items:center;align-content:center;gap:30px;color:#fff;text-align:center;border:2px solid #fff;max-width:1420px;margin:0 auto;aspect-ratio:1420/479;position:relative;width:100%"><svg viewBox="0 0 150 150" fill="none" stroke="#fff" stroke-width="5"><circle cx="75" cy="75" r="70"/><path d="M60 45v60l45-30z"/></svg><h3 class="h2">Открытие демонстрационного парка в Подмосковье</h3></button></div></section>
+<section class="loc sec"><div class="wrap two"><div><h2 class="h3" style="font-weight:600;margin-bottom:24px">Демонстрационный парк United Concrete Canvas</h2><div class="prose"><p>Деревня Падиково, Истринский район п. Совхоза (25 км от МКАД по Новорижскому шоссе)</p><p>Посещение по предварительному согласованию</p></div></div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px"><img src="${img('k9')}" alt="" style="aspect-ratio:1;object-fit:cover"><div class="map"><svg class="grid" viewBox="0 0 400 400" preserveAspectRatio="none"><path d="M0 120 C120 100 200 180 400 150M0 300 C140 260 260 330 400 280M140 0 C160 140 120 260 170 400M280 0 C260 160 300 260 270 400" stroke="#b9cfe2" stroke-width="10" fill="none"/></svg><span class="pin"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 22s-7-6.6-7-12a7 7 0 0 1 14 0c0 5.4-7 12-7 12z"/><circle cx="12" cy="10" r="2.6" fill="#fff"/></svg>Падиково</span></div></div></div></section>
+<section class="sec wrap"><div class="two" style="align-items:start"><div><h2 class="h3" style="font-weight:600;margin-bottom:20px">Заинтересованы?</h2><div class="prose"><p><b style="font-weight:600">Напишите нам для организации посещения демонстрационного парка.</b></p><p>Если вас заинтересовало бетонное полотно Concrete Canvas, мы готовы ответить на все ваши вопросы, предоставить дополнительную информацию и обсудить варианты сотрудничества.</p></div></div><div class="req-box">${formHTML('fdp',{area:false})}</div></div></section>`;
+
+P.contacts=()=>`${heroPlain('Контакты','',false)}<section class="sec wrap" style="padding-top:10px"><div class="contacts"><div>
+<h2 class="ctitle">Офис Concrete Canvas Central Asia в Бишкеке</h2><div class="office ocard"><a href="https://wa.me/996770880228" target="_blank" rel="noopener"><svg><use href="#wa"/></svg>+996 770 880 228</a><span><svg><use href="#at"/></svg>info@ccca.kg</span><span><svg><use href="#pin"/></svg>пр. Чынгыза Айтматова, 397, Бишкек, Кыргызстан</span></div><img class="ophoto" src="${img('k3')}" alt=""></div>
+<div><h2 class="ctitle">Заполните, пожалуйста, эту форму</h2>${formHTML('fct')}</div></div></section>`;
+
+P.request=()=>`${heroPlain('Оставить заявку','')}<section class="sec wrap" style="padding-top:10px"><div class="req-box"><h2 class="h3" style="margin-bottom:30px">Заполните, пожалуйста, эту форму</h2>${formHTML('frq')}</div></section>`;
+
+P.policy=()=>`<section class="sec wrap policy"><h1 class="h2" style="font-weight:600;margin-bottom:30px">Политика обработки персональных данных</h1><div class="prose">${POLICY.map(([h,b])=>`<h2>${h}</h2><p>${esc(b)}</p>`).join('')}</div></section>`;
+
+/* ---------- роутер ---------- */
+const SECTION=r=>r.startsWith('app-')||r==='applications'?'applications':r.startsWith('pr-')||r==='projects'?'projects':['products','cct','ccx','cchydro','deploy'].includes(r)?'products':r.startsWith('news')?'news':r.startsWith('media')?'media':r;
+const TITLES={home:'Главная',material:'О материале',products:'Продукция',cct:'CCT',ccx:'CCX',cchydro:'CC Hydro',deploy:'DEPLOY 14R',applications:'Виды применения',projects:'Примеры работ',news:'Новости',media:'Медиа','media-layouts':'Примеры укладок',demopark:'Демопарк',contacts:'Контакты',request:'Заявка',policy:'Политика'};
+function render(){
+  let r=window.__ROUTE__||(location.hash||'#home').slice(1);if(!P[r]||HIDDEN.test(r))r='home';
+  const v=$('#view');if(window.__PRE__){window.__PRE__=0}else{v.innerHTML=P[r]()}v.style.animation='none';v.offsetHeight;v.style.animation='';
+  $$('#nav a,#mnav [data-sec]').forEach(a=>a.classList.toggle('on',a.dataset.sec===SECTION(r)));
+  $('#nav').classList.remove('open');
+  if(!window.__ROUTE__)window.scrollTo({top:0,behavior:'instant'});
+  init(v);
+  document.body.classList.toggle('is-home',r==='home');setHH();onScroll();parallax();
+}
+
+function setHH(){document.documentElement.style.setProperty('--hh',$('header').offsetHeight+'px')}
+function onScroll(){document.body.classList.toggle('at-top',document.body.classList.contains('is-home')&&scrollY<40)}
+addEventListener('scroll',onScroll,{passive:true});addEventListener('resize',setHH);
+
+/* ---------- интерактив ---------- */
+function slider(s){const track=s.querySelector('.slides'),n=track.children.length,dots=s.querySelector('.dots');let i=0,t;
+ for(let k=0;k<n;k++){const b=document.createElement('button');b.setAttribute('aria-label','Slide '+(k+1));b.onclick=()=>go(k);dots.appendChild(b)}
+ function go(k){i=(k+n)%n;track.style.transform=`translateX(${-i*100}%)`;[...dots.children].forEach((d,j)=>d.setAttribute('aria-current',j===i));clearInterval(t);t=setInterval(()=>{if(document.body.contains(s))go(i+1);else clearInterval(t)},6000)}
+ s.querySelector('.prev').onclick=()=>go(i-1);s.querySelector('.next').onclick=()=>go(i+1);go(0)}
+function carousel(track,prev,next){let i=0;const step=()=>{const c=track.children[0],g=parseFloat(getComputedStyle(track).gap)||0;return c.getBoundingClientRect().width+g};
+ const per=()=>Math.max(1,Math.round(track.parentElement.clientWidth/step()));
+ const go=k=>{const max=Math.max(0,track.children.length-per());i=k<0?max:k>max?0:k;track.style.transform=`translateX(${-i*step()}px)`};
+ prev.onclick=()=>go(i-1);next.onclick=()=>go(i+1);addEventListener('resize',()=>go(i))}
+function toast(t){const e=document.createElement('div');e.className='toast';e.textContent=t;document.body.appendChild(e);setTimeout(()=>e.remove(),2600)}
+function init(root){
+ $$('.js-slider,#slider',root).forEach(slider);
+ if($('#cards',root)){$('#cards',root).innerHTML=NEWS.concat(NEWS.slice(0,1)).map(n=>`<a class="card" href="news-${n.id}.html"><img src="${img(n.img)}" alt=""><div class="b"><span class="date"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M5 22a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h1V2h2v2h8V2h2v2h1a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2zm0-2h14V10H5z"/></svg>${n.date}</span><h3>${n.title}</h3><p>${n.text[0].slice(0,110)}…</p><span class="more">Подробнее${ARR}</span></div></a>`).join('');
+  carousel($('#cards',root),$('#nPrev',root),$('#nNext',root))}
+ const rail=$('#xrail',root);if(rail){$('#aPrev',root).onclick=()=>rail.scrollBy({left:-rail.clientWidth*.8});$('#aNext',root).onclick=()=>rail.scrollBy({left:rail.clientWidth*.8})}
+ const ba=$('#baRange',root);if(ba)ba.oninput=()=>ba.parentElement.style.setProperty('--p',ba.value+'%');
+ $$('.thumbs button',root).forEach(b=>b.onclick=()=>{const st=b.closest('.stage');st.querySelector('.main').src=b.dataset.src;$$('button',b.parentElement).forEach(x=>x.setAttribute('aria-pressed',x===b))});
+ $$('.mcard .more-t',root).forEach(p=>{if(p.parentElement.classList.contains('acc'))return;const w=document.createElement('div');w.className='acc';p.before(w);w.append(p);p.hidden=false});
+ $$('.mcard button',root).forEach(b=>b.onclick=()=>{const o=b.getAttribute('aria-expanded')!=='true';b.setAttribute('aria-expanded',o)});
+ $$('[data-scroll]',root).forEach(b=>b.onclick=()=>document.getElementById(b.dataset.scroll).scrollIntoView({behavior:'smooth',block:'start'}));
+ $$('.pager button',root).forEach(b=>b.onclick=()=>{$$('.pager button',root).forEach(x=>x.setAttribute('aria-current',x===b));const l=$('#nlist',root);[...l.children].sort(()=>Math.random()-.5).forEach(c=>l.appendChild(c))});
+ bindForms(root);
+ motion(root);
+}
+
+const REVEAL='.xfeat li,.xprod,.xcase,.xapp,.bcard,.adv-box p,.nrow,.step,.tiles a,.case,.broch,.lay,.pcase,.princ>div,.icgrid a,.mcard,.sq figure,.xmini div,.card,.supply>div,.office,.xhead,.prose.c,.xba,.xflex figure,.xcta,.contact-line,.tbl-wrap,.side a';
+const RM=matchMedia('(prefers-reduced-motion:reduce)').matches;
+function countUp(el){const m=el.textContent.match(/^(\d+)(.*)$/s);if(!m||RM)return;const end=+m[1],start=end>1000?end-30:0,t0=performance.now(),dur=1500;
+ const step=t=>{const k=Math.min(1,(t-t0)/dur),e=1-Math.pow(1-k,3);el.textContent=Math.round(start+(end-start)*e)+m[2];if(k<1)requestAnimationFrame(step)};requestAnimationFrame(step)}
+function drawIco(svg){svg.classList.remove('pre-draw','draw');void svg.offsetWidth;svg.classList.add('draw')}
+function baDemo(ba){if(RM)return;const r=ba.querySelector('input'),t0=performance.now();let stop=false;r.addEventListener('pointerdown',()=>stop=true,{once:true});
+ const step=t=>{if(stop)return;const k=Math.min(1,(t-t0)/2400),v=50+Math.sin(k*Math.PI*2)*28*(1-k*.3)*(k<1?1:0);ba.style.setProperty('--p',v+'%');r.value=v;if(k<1)requestAnimationFrame(step)};requestAnimationFrame(step)}
+function motion(root){
+ $$(REVEAL,root).forEach(el=>{el.classList.add('rv');el.style.setProperty('--d',Math.max(0,[...el.parentElement.children].indexOf(el))%6)});
+ $$('.ico',root).forEach(s=>{$$('path,rect',s).forEach(p=>p.setAttribute('pathLength','1'));const a=s.closest('a');if(a&&!RM)a.addEventListener('mouseenter',()=>drawIco(s))});
+ if(!('IntersectionObserver' in window)||RM)return;
+ const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;const t=e.target;io.unobserve(t);
+  if(t.classList.contains('pre')){t.classList.remove('pre');setTimeout(()=>{t.classList.remove('rv');t.style.removeProperty('--d')},1500)}
+  if(t.classList.contains('pre-draw'))drawIco(t);
+  if(t.matches('.xstats b,.xmini b'))countUp(t);
+  if(t.matches('.xba'))baDemo(t)}),{rootMargin:'0px 0px -60px'});
+ $$('.rv',root).forEach(el=>{if(el.getBoundingClientRect().top>innerHeight){el.classList.add('pre');io.observe(el)}else{setTimeout(()=>{el.classList.remove('rv')},50)}});
+ $$('.ico',root).forEach(s=>{if(s.getBoundingClientRect().top>innerHeight*.9){s.classList.add('pre-draw');io.observe(s)}else drawIco(s)});
+ $$('.xstats b,.xmini b,.xba',root).forEach(el=>io.observe(el));
+}
+function parallax(){const y=scrollY,bg=$('.xhero-bg');if(bg&&!RM)bg.style.translate=`0 ${y*.35}px`;const ph=$('.phero');if(ph&&!RM)ph.style.backgroundPositionY=`calc(50% + ${y*.3}px)`;
+ const h=document.documentElement.scrollHeight-innerHeight;document.documentElement.style.setProperty('--sp',h>0?(y/h).toFixed(4):0)}
+addEventListener('scroll',()=>requestAnimationFrame(parallax),{passive:true});
+function bindForms(root){
+ $$('.captcha',root).forEach(c=>{const f=()=>{c.classList.toggle('ok');c.setAttribute('aria-checked',c.classList.contains('ok'));c.querySelector('.box').textContent=c.classList.contains('ok')?'✓':''};c.onclick=f;c.onkeydown=e=>{if(e.key===' '||e.key==='Enter'){e.preventDefault();f()}}});
+ $$('.file input',root).forEach(i=>i.onchange=()=>{i.previousElementSibling.textContent=i.files[0]?i.files[0].name:'Прикрепить файл'});
+ $$('.js-form',root).forEach(f=>f.onsubmit=e=>{e.preventDefault();const bad=[...f.querySelectorAll('[required]')].filter(x=>x.type==='checkbox'?!x.checked:!x.value.trim());
+  f.querySelectorAll('input').forEach(x=>x.style.borderColor='');bad.forEach(x=>x.style.borderColor='#d33');
+  if(bad.length){toast(bad.some(x=>x.type==='checkbox')&&bad.length===1?'Please tick the consent to data processing':'Please enter your name and phone');return}
+  if(!f.querySelector('.captcha').classList.contains('ok')){toast('Please confirm that you are not a robot');return}
+  f.querySelector('.okmsg').hidden=false;f.reset();f.querySelector('.captcha').classList.remove('ok');f.querySelector('.captcha .box').textContent=''});
+}
+document.addEventListener('click',e=>{
+ const o=e.target.closest('.js-order');if(o){openModal();return}
+ if(e.target.closest('.js-dl')){toast('The file will be available once brochures are uploaded to the site');return}
+ if(e.target.closest('.js-video')){toast('The video will be available once it is uploaded to YouTube');return}
+});
+$$('.lang a').forEach((b,i)=>b.onclick=()=>{$$('.lang a').forEach(x=>x.setAttribute('aria-pressed',x===b));$('.lang').style.setProperty('--i',i);if(b.textContent!=='РУС')toast('Версия '+b.textContent+' в разработке')});
+const m=$('#modal');
+function openModal(){$('#modalBody').innerHTML=`<h2 class="h3" style="margin-bottom:24px">Please fill in this form</h2>`+formHTML('fm');bindForms(m);m.hidden=false;$('#fm-name').focus()}
+m.querySelector('.x').onclick=()=>m.hidden=true;m.onclick=e=>{if(e.target===m)m.hidden=true};
+addEventListener('keydown',e=>{if(e.key==='Escape')m.hidden=true});
+(()=>{const mn=$('#mnav'),bg=$('#burger'),B=document.body;
+ const ml=$('.mnav-lang');if(ml&&!ml.children.length){const L=$('header .lang');if(L)ml.appendChild(L.cloneNode(true))}
+ const set=o=>{B.classList.toggle('menu-open',o);mn.setAttribute('aria-hidden',!o);bg.setAttribute('aria-expanded',o);bg.setAttribute('aria-label',o?'Закрыть':'Меню')};
+ bg.onclick=()=>set(!B.classList.contains('menu-open'));
+ mn.addEventListener('click',e=>{if(e.target.closest('a,.js-order'))set(false)});
+ addEventListener('keydown',e=>{if(e.key==='Escape')set(false)});
+ addEventListener('resize',()=>{if(innerWidth>1100)set(false)});
+ const mb=$('#mbar');let footIn=false;
+ const upd=()=>mb.classList.toggle('show',scrollY>innerHeight*.55&&!footIn);
+ const ft=$('footer');if(ft&&'IntersectionObserver'in window)new IntersectionObserver(es=>{footIn=es[0].isIntersecting;upd()}).observe(ft);
+ addEventListener('scroll',upd,{passive:true});upd();})();
+document.addEventListener('DOMContentLoaded',render);
+if(document.readyState!=='loading')render();
+</script>
+
+
+
+</body></html>
