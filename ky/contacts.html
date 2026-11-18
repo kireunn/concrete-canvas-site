@@ -1188,12 +1188,13 @@ function bindForms(root){
 document.addEventListener('click',e=>{
  const o=e.target.closest('.js-order');if(o){openModal();return}
  if(e.target.closest('.js-dl')){toast('Файл брошюралар сайтка жүктөлгөндөн кийин жеткиликтүү болот');return}
- if(e.target.closest('.js-video')){toast('Видео YouTubeга жайгаштырылгандан кийин жеткиликтүү болот');return}
+ if(e.target.closest('.js-video,.yt')){e.preventDefault();openVideo();return}
 });
 $$('.lang a').forEach((b,i)=>b.onclick=()=>{$$('.lang a').forEach(x=>x.setAttribute('aria-pressed',x===b));$('.lang').style.setProperty('--i',i);if(b.textContent!=='РУС')toast('Версия '+b.textContent+' в разработке')});
 const m=$('#modal');
-function openModal(){$('#modalBody').innerHTML=`<h2 class="h3" style="margin-bottom:24px">Сураныч, бул форманы толтуруңуз</h2>`+formHTML('fm');bindForms(m);m.hidden=false;$('#fm-name').focus()}
-m.querySelector('.x').onclick=()=>m.hidden=true;m.onclick=e=>{if(e.target===m)m.hidden=true};
+function openVideo(){const base=img('').replace(/img\/\.jpg$/,'');m.querySelector('.in').style.maxWidth='1200px';$('#modalBody').innerHTML=`<video src="${base}video/cc-video.mp4" poster="${base}video/cc-video-poster.jpg" controls autoplay muted playsinline preload="metadata" style="display:block;width:100%;border-radius:12px;background:#000"></video>`;m.hidden=false}
+function openModal(){m.querySelector('.in').style.maxWidth='';$('#modalBody').innerHTML=`<h2 class="h3" style="margin-bottom:24px">Сураныч, бул форманы толтуруңуз</h2>`+formHTML('fm');bindForms(m);m.hidden=false;$('#fm-name').focus()}
+m.querySelector('.x').onclick=()=>m.hidden=true;new MutationObserver(()=>{if(m.hidden){const v=m.querySelector('video');if(v){v.pause();v.remove()}}}).observe(m,{attributes:true,attributeFilter:['hidden']});m.onclick=e=>{if(e.target===m)m.hidden=true};
 addEventListener('keydown',e=>{if(e.key==='Escape')m.hidden=true});
 (()=>{const mn=$('#mnav'),bg=$('#burger'),B=document.body;
  const ml=$('.mnav-lang');if(ml&&!ml.children.length){const L=$('header .lang');if(L)ml.appendChild(L.cloneNode(true))}
