@@ -14,7 +14,7 @@
 *{box-sizing:border-box}
 [hidden]{display:none!important}
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--ink);font-family:var(--f-head);font-size:16px;line-height:1.5}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-head);font-size:16px;line-height:1.5}
 a{color:inherit;text-decoration:none}
 img{display:block;max-width:100%}
 .wrap{max-width:calc(var(--wrap) + 32px);margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
@@ -476,7 +476,8 @@ table.spec th{background:var(--ink);color:#fff}
 .xlink:hover{text-decoration:underline;text-underline-offset:4px}
 .xbtns{display:flex;gap:12px;flex-wrap:wrap;margin-top:34px}
 
-.xhero{position:relative;overflow:hidden;color:#fff;margin-top:calc(-1 * var(--hh,0px));padding-top:calc(var(--hh,0px) + clamp(70px,10vw,150px));padding-bottom:clamp(28px,4vw,48px)}
+.xhero{position:relative;overflow:hidden;color:#fff;padding-top:clamp(40px,4.4vw,72px);padding-bottom:clamp(28px,4vw,48px)}
+section[id],[id^="m-"]{scroll-margin-top:calc(var(--hh,0px) + 76px)}
 .xhero-bg{position:absolute;inset:0;background:center/cover no-repeat;animation:kb 16s ease-out both}
 @keyframes kb{from{transform:scale(1.1)}}
 .xhero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(15,27,42,.88) 0%,rgba(15,27,42,.5) 55%,rgba(15,27,42,.15) 100%),linear-gradient(0deg,rgba(15,27,42,.65),transparent 45%)}
@@ -486,7 +487,7 @@ table.spec th{background:var(--ink);color:#fff}
 .lead-x{color:#dbe7f3;font-size:clamp(16px,1.35vw,20px);max-width:44ch;margin-top:24px;animation:up .9s .12s ease-out both}
 .xhero .xbtns{animation:up .9s .22s ease-out both}
 @keyframes up{from{transform:translateY(18px)}}
-.xstats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;margin-top:clamp(56px,8vw,110px);background:rgba(255,255,255,.16);border-radius:20px;overflow:hidden;backdrop-filter:blur(12px)}
+.xstats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;margin-top:clamp(48px,6vw,96px);background:rgba(255,255,255,.16);border-radius:20px;overflow:hidden;backdrop-filter:blur(12px)}
 .xstats div{background:rgba(15,27,42,.42);padding:22px 24px}
 .xstats b{display:block;font:700 clamp(26px,2.6vw,40px)/1.1 var(--f-head);color:#fff;letter-spacing:-.02em}
 .xstats span{color:#c4d3e2;font-size:14px}
@@ -746,7 +747,7 @@ body.menu-open .mnav-sub{opacity:1;transform:none;transition-delay:.38s}
   .logo img{height:42px}
   .sec{padding-block:44px}
   .h2{font-size:27px;line-height:1.15}
-  .xhero{padding-top:calc(var(--hh,0px) + 44px);padding-bottom:18px}
+  .xhero{padding-top:36px;padding-bottom:18px}
   .xhero h1{font-size:clamp(46px,14vw,62px)}
   .xhero-in>p,.xhero-in p{font-size:15px;line-height:1.5}
   .xhero .eyebrow{font-size:11px;letter-spacing:.14em;line-height:1.5;margin-bottom:14px}
@@ -1105,18 +1106,19 @@ P.policy=()=>`<section class="sec wrap policy"><h1 class="h2" style="font-weight
 /* ---------- роутер ---------- */
 const SECTION=r=>r.startsWith('app-')||r==='applications'?'applications':r.startsWith('pr-')||r==='projects'?'projects':['products','cct','ccx','cchydro','deploy'].includes(r)?'products':r.startsWith('news')?'news':r.startsWith('media')?'media':r;
 const TITLES={home:'Главная',material:'О материале',products:'Продукция',cct:'CCT',ccx:'CCX',cchydro:'CC Hydro',deploy:'DEPLOY 14R',applications:'Виды применения',projects:'Примеры работ',news:'Новости',media:'Медиа','media-layouts':'Примеры укладок',demopark:'Демопарк',contacts:'Контакты',request:'Заявка',policy:'Политика'};
+if('scrollRestoration' in history)history.scrollRestoration='manual';
 function render(){
   let r=window.__ROUTE__||(location.hash||'#home').slice(1);if(!P[r]||HIDDEN.test(r))r='home';
   const v=$('#view');if(window.__PRE__){window.__PRE__=0}else{v.innerHTML=P[r]()}v.style.animation='none';v.offsetHeight;v.style.animation='';
   $$('#nav a,#mnav [data-sec]').forEach(a=>a.classList.toggle('on',a.dataset.sec===SECTION(r)));
   $('#nav').classList.remove('open');
-  if(!window.__ROUTE__)window.scrollTo({top:0,behavior:'instant'});
+  if(!location.hash)window.scrollTo({top:0,behavior:'instant'});
   init(v);
   document.body.classList.toggle('is-home',r==='home');setHH();onScroll();parallax();
 }
 
 function setHH(){document.documentElement.style.setProperty('--hh',$('header').offsetHeight+'px')}
-function onScroll(){document.body.classList.toggle('at-top',document.body.classList.contains('is-home')&&scrollY<40)}
+function onScroll(){document.body.classList.remove('at-top')}
 addEventListener('scroll',onScroll,{passive:true});addEventListener('resize',setHH);
 
 /* ---------- интерактив ---------- */
