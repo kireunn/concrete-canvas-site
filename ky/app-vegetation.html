@@ -476,18 +476,19 @@ table.spec th{background:var(--ink);color:#fff}
 .xlink:hover{text-decoration:underline;text-underline-offset:4px}
 .xbtns{display:flex;gap:12px;flex-wrap:wrap;margin-top:34px}
 
-.xhero{position:relative;overflow:hidden;color:#fff;padding-top:clamp(40px,4.4vw,72px);padding-bottom:clamp(28px,4vw,48px)}
+.xhero{position:relative;overflow:hidden;color:#fff;margin-top:calc(-1 * var(--hh,0px));padding-top:calc(var(--hh,0px) + clamp(28px,3vw,56px));padding-bottom:clamp(28px,4vw,48px);min-height:100vh;min-height:100svh;display:flex;flex-direction:column;justify-content:center}
+.xhero-in{width:100%}
 section[id],[id^="m-"]{scroll-margin-top:calc(var(--hh,0px) + 76px)}
 .xhero-bg{position:absolute;inset:0;background:center/cover no-repeat;animation:kb 16s ease-out both}
 @keyframes kb{from{transform:scale(1.1)}}
 .xhero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(15,27,42,.88) 0%,rgba(15,27,42,.5) 55%,rgba(15,27,42,.15) 100%),linear-gradient(0deg,rgba(15,27,42,.65),transparent 45%)}
 .xhero-in{position:relative;z-index:1}
-.xhero h1{font-family:var(--f-head);font-size:clamp(52px,8.4vw,128px);font-weight:700;line-height:.94;letter-spacing:-.045em;animation:up .9s ease-out both}
+.xhero h1{font-family:var(--f-head);font-size:clamp(52px,min(8.4vw,13vh),128px);font-weight:700;line-height:.94;letter-spacing:-.045em;animation:up .9s ease-out both}
 .xhero h1 em{font-style:normal;color:#9fd0ff}
 .lead-x{color:#dbe7f3;font-size:clamp(16px,1.35vw,20px);max-width:44ch;margin-top:24px;animation:up .9s .12s ease-out both}
 .xhero .xbtns{animation:up .9s .22s ease-out both}
 @keyframes up{from{transform:translateY(18px)}}
-.xstats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;margin-top:clamp(48px,6vw,96px);background:rgba(255,255,255,.16);border-radius:20px;overflow:hidden;backdrop-filter:blur(12px)}
+.xstats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;margin-top:clamp(32px,min(6vw,7vh),96px);background:rgba(255,255,255,.16);border-radius:20px;overflow:hidden;backdrop-filter:blur(12px)}
 .xstats div{background:rgba(15,27,42,.42);padding:22px 24px}
 .xstats b{display:block;font:700 clamp(26px,2.6vw,40px)/1.1 var(--f-head);color:#fff;letter-spacing:-.02em}
 .xstats span{color:#c4d3e2;font-size:14px}
@@ -747,7 +748,7 @@ body.menu-open .mnav-sub{opacity:1;transform:none;transition-delay:.38s}
   .logo img{height:42px}
   .sec{padding-block:44px}
   .h2{font-size:27px;line-height:1.15}
-  .xhero{padding-top:36px;padding-bottom:18px}
+  .xhero{padding-top:calc(var(--hh,0px) + 28px);padding-bottom:18px}
   .xhero h1{font-size:clamp(46px,14vw,62px)}
   .xhero-in>p,.xhero-in p{font-size:15px;line-height:1.5}
   .xhero .eyebrow{font-size:11px;letter-spacing:.14em;line-height:1.5;margin-bottom:14px}
@@ -1111,7 +1112,7 @@ function render(){
 }
 
 function setHH(){document.documentElement.style.setProperty('--hh',$('header').offsetHeight+'px')}
-function onScroll(){document.body.classList.remove('at-top')}
+function onScroll(){document.body.classList.toggle('at-top',document.body.classList.contains('is-home')&&scrollY<40)}
 addEventListener('scroll',onScroll,{passive:true});addEventListener('resize',setHH);
 
 /* ---------- интерактив ---------- */
