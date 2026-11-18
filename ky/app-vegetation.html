@@ -1183,7 +1183,7 @@ document.addEventListener('click',e=>{
 });
 $$('.lang a').forEach((b,i)=>b.onclick=()=>{$$('.lang a').forEach(x=>x.setAttribute('aria-pressed',x===b));$('.lang').style.setProperty('--i',i);if(b.textContent!=='РУС')toast('Версия '+b.textContent+' в разработке')});
 const m=$('#modal');
-function openVideo(){const base=img('').replace(/img\/\.jpg$/,'');m.querySelector('.in').style.maxWidth='1200px';$('#modalBody').innerHTML=`<video src="${base}video/cc-video.mp4" poster="${base}video/cc-video-poster.jpg" controls autoplay muted playsinline preload="metadata" style="display:block;width:100%;border-radius:12px;background:#000"></video>`;m.hidden=false}
+function openVideo(){const base=img('').replace(/img\/\.jpg$/,'');m.querySelector('.in').style.maxWidth='1200px';$('#modalBody').innerHTML=`<video src="${base}video/cc-video.mp4?v=2" poster="${base}video/cc-video-poster.jpg" controls autoplay playsinline preload="metadata" style="display:block;width:100%;border-radius:12px;background:#000"></video>`;m.hidden=false}
 function openModal(){m.querySelector('.in').style.maxWidth='';$('#modalBody').innerHTML=`<h2 class="h3" style="margin-bottom:24px">Сураныч, бул форманы толтуруңуз</h2>`+formHTML('fm');bindForms(m);m.hidden=false;$('#fm-name').focus()}
 m.querySelector('.x').onclick=()=>m.hidden=true;new MutationObserver(()=>{if(m.hidden){const v=m.querySelector('video');if(v){v.pause();v.remove()}}}).observe(m,{attributes:true,attributeFilter:['hidden']});m.onclick=e=>{if(e.target===m)m.hidden=true};
 addEventListener('keydown',e=>{if(e.key==='Escape')m.hidden=true});
