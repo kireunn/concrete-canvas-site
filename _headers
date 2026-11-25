@@ -1,0 +1,19 @@
+# Заголовки безопасности для Cloudflare Pages (на GitHub Pages файл игнорируется).
+# CSP совпадает с <meta> в страницах (tools/seo.py) + frame-ancestors, который работает только заголовком.
+/*
+  Strict-Transport-Security: max-age=31536000
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
+  Cross-Origin-Opener-Policy: same-origin
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; media-src 'self'; frame-src https://www.youtube-nocookie.com; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests
+
+/img/*
+  Cache-Control: public, max-age=86400
+
+/docs/*
+  Cache-Control: public, max-age=86400
+
+/video/*
+  Cache-Control: public, max-age=86400
