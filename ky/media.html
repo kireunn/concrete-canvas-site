@@ -948,11 +948,9 @@ const formHTML=(id,{area=true}={})=>`<form class="form js-form" id="${id}" noval
  <input id="${id}-phone" required type="tel" placeholder="Телефон" autocomplete="tel"><input id="${id}-email" type="email" placeholder="Email" autocomplete="email">
  ${area?`<input id="${id}-area" placeholder="Талап кылынган каптоо аянты, м²"><input id="${id}-where" placeholder="Кайда колдонуу пландалууда">`:''}
  <textarea class="full" id="${id}-msg" placeholder="Сиздин комментарийиңиз, каалооңуз, сурооңуз"></textarea>
- <div class="fattach"><label class="file"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 4v16M4 12h16"/></svg><span>Файл тиркөө</span><input type="file" id="${id}-file"></label><p class="hint">Бизге техникалык тапшырманы, объекттин сүрөтүн, схеманы, чиймени же милдетти кошумча түшүндүрүп же сүрөттөп берген башка документти жөнөтсөңүз болот</p></div>
- <div class="captcha" role="checkbox" aria-checked="false" tabindex="0"><span class="box"></span><span>Мен робот эмесмин<small>Улантуу үчүн басыңыз</small></span></div>
- <div class="fsend full"><button class="btn solid" type="submit">Жөнөтүү</button><p class="hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg>Сиздин маалыматтарыңыз үчүнчү жактарга берилбейт</p></div>
+ <div class="fsend full"><button class="btn solid" type="submit">WhatsApp аркылуу жөнөтүү</button><p class="hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg>Сиздин маалыматтарыңыз үчүнчү жактарга берилбейт</p></div>
  <label class="agree full"><input type="checkbox" id="${id}-agree" required> Мен <a href="policy.html">жеке маалыматтарымды иштетүүгө макулмун</a>.</label>
- <p class="okmsg full" hidden>Рахмат! Өтүнмө кабыл алынды — жакын арада сиз менен байланышабыз.</p>
+ <p class="okmsg full" hidden>Өтүнмөңүз менен WhatsApp ачылды — чатта «Жөнөтүү» баскычын басыңыз, биз сиз менен байланышабыз. Объекттин сүрөтүн же схемасын ошол жерден тиркесеңиз болот.</p>
 </form>`;
 
 /* ---------- страницы ---------- */
@@ -1167,13 +1165,13 @@ function parallax(){const y=scrollY,bg=$('.xhero-bg');if(bg&&!RM)bg.style.transl
  const h=document.documentElement.scrollHeight-innerHeight;document.documentElement.style.setProperty('--sp',h>0?(y/h).toFixed(4):0)}
 addEventListener('scroll',()=>requestAnimationFrame(parallax),{passive:true});
 function bindForms(root){
- $$('.captcha',root).forEach(c=>{const f=()=>{c.classList.toggle('ok');c.setAttribute('aria-checked',c.classList.contains('ok'));c.querySelector('.box').textContent=c.classList.contains('ok')?'✓':''};c.onclick=f;c.onkeydown=e=>{if(e.key===' '||e.key==='Enter'){e.preventDefault();f()}}});
- $$('.file input',root).forEach(i=>i.onchange=()=>{i.previousElementSibling.textContent=i.files[0]?i.files[0].name:'Прикрепить файл'});
  $$('.js-form',root).forEach(f=>f.onsubmit=e=>{e.preventDefault();const bad=[...f.querySelectorAll('[required]')].filter(x=>x.type==='checkbox'?!x.checked:!x.value.trim());
   f.querySelectorAll('input').forEach(x=>x.style.borderColor='');bad.forEach(x=>x.style.borderColor='#d33');
   if(bad.length){toast(bad.some(x=>x.type==='checkbox')&&bad.length===1?'Маалыматтарды иштетүүгө макулдукту белгилеңиз':'Атыңызды жана телефонуңузду жазыңыз');return}
-  if(!f.querySelector('.captcha').classList.contains('ok')){toast('Робот эмес экениңизди ырастаңыз');return}
-  f.querySelector('.okmsg').hidden=false;f.reset();f.querySelector('.captcha').classList.remove('ok');f.querySelector('.captcha .box').textContent=''});
+  const val=k=>{const x=f.querySelector('[id$="-'+k+'"]');return x?x.value.trim():''};
+  const txt=['ccca.kg сайтынан өтүнмө',...[['name','Аты'],['company','Компания'],['phone','Телефон'],['email','Email'],['area','Аянты, м²'],['where','Кайда колдонулат'],['msg','Комментарий']].map(([k,l])=>val(k)&&l+': '+val(k))].filter(Boolean).join('\n');
+  const url='https://wa.me/996770880228?text='+encodeURIComponent(txt);const w=window.open(url,'_blank');if(w)w.opener=null;else location.href=url;
+  f.querySelector('.okmsg').hidden=false;f.reset()});
 }
 document.addEventListener('click',e=>{
  const o=e.target.closest('.js-order');if(o){openModal();return}

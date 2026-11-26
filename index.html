@@ -974,11 +974,9 @@ const formHTML=(id,{area=true}={})=>`<form class="form js-form" id="${id}" noval
  <input id="${id}-phone" required type="tel" placeholder="Телефон" autocomplete="tel"><input id="${id}-email" type="email" placeholder="Email" autocomplete="email">
  ${area?`<input id="${id}-area" placeholder="Требуемая площадь покрытия, м²"><input id="${id}-where" placeholder="Где планируется использовать">`:''}
  <textarea class="full" id="${id}-msg" placeholder="Ваш комментарий, пожелания, вопрос"></textarea>
- <div class="fattach"><label class="file"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 4v16M4 12h16"/></svg><span>Прикрепить файл</span><input type="file" id="${id}-file"></label><p class="hint">Вы можете отправить нам техническое задание, фотографию объекта, схему, рисунок или иной документ, который дополнительно разъяснит или проиллюстрирует задачу</p></div>
- <div class="captcha" role="checkbox" aria-checked="false" tabindex="0"><span class="box"></span><span>Я не робот<small>Нажмите, чтобы продолжить</small></span></div>
- <div class="fsend full"><button class="btn solid" type="submit">Отправить</button><p class="hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg>Ваши данные не будут переданы третьим лицам</p></div>
+ <div class="fsend full"><button class="btn solid" type="submit">Отправить в WhatsApp</button><p class="hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg>Ваши данные не будут переданы третьим лицам</p></div>
  <label class="agree full"><input type="checkbox" id="${id}-agree" required> Согласен на <a href="policy.html">обработку моих персональных данных</a>.</label>
- <p class="okmsg full" hidden>Спасибо! Заявка принята — мы свяжемся с вами в ближайшее время.</p>
+ <p class="okmsg full" hidden>Открылся WhatsApp с вашей заявкой — нажмите «Отправить» в чате, и мы с вами свяжемся. Фото или схему объекта можно приложить там же.</p>
 </form>`;
 
 /* ---------- страницы ---------- */
@@ -1193,13 +1191,13 @@ function parallax(){const y=scrollY,bg=$('.xhero-bg');if(bg&&!RM)bg.style.transl
  const h=document.documentElement.scrollHeight-innerHeight;document.documentElement.style.setProperty('--sp',h>0?(y/h).toFixed(4):0)}
 addEventListener('scroll',()=>requestAnimationFrame(parallax),{passive:true});
 function bindForms(root){
- $$('.captcha',root).forEach(c=>{const f=()=>{c.classList.toggle('ok');c.setAttribute('aria-checked',c.classList.contains('ok'));c.querySelector('.box').textContent=c.classList.contains('ok')?'✓':''};c.onclick=f;c.onkeydown=e=>{if(e.key===' '||e.key==='Enter'){e.preventDefault();f()}}});
- $$('.file input',root).forEach(i=>i.onchange=()=>{i.previousElementSibling.textContent=i.files[0]?i.files[0].name:'Прикрепить файл'});
  $$('.js-form',root).forEach(f=>f.onsubmit=e=>{e.preventDefault();const bad=[...f.querySelectorAll('[required]')].filter(x=>x.type==='checkbox'?!x.checked:!x.value.trim());
   f.querySelectorAll('input').forEach(x=>x.style.borderColor='');bad.forEach(x=>x.style.borderColor='#d33');
   if(bad.length){toast(bad.some(x=>x.type==='checkbox')&&bad.length===1?'Отметьте согласие на обработку данных':'Заполните имя и телефон');return}
-  if(!f.querySelector('.captcha').classList.contains('ok')){toast('Подтвердите, что вы не робот');return}
-  f.querySelector('.okmsg').hidden=false;f.reset();f.querySelector('.captcha').classList.remove('ok');f.querySelector('.captcha .box').textContent=''});
+  const val=k=>{const x=f.querySelector('[id$="-'+k+'"]');return x?x.value.trim():''};
+  const txt=['Заявка с сайта ccca.kg',...[['name','Имя'],['company','Компания'],['phone','Телефон'],['email','Email'],['area','Площадь, м²'],['where','Где использовать'],['msg','Комментарий']].map(([k,l])=>val(k)&&l+': '+val(k))].filter(Boolean).join('\n');
+  const url='https://wa.me/996770880228?text='+encodeURIComponent(txt);const w=window.open(url,'_blank');if(w)w.opener=null;else location.href=url;
+  f.querySelector('.okmsg').hidden=false;f.reset()});
 }
 document.addEventListener('click',e=>{
  const o=e.target.closest('.js-order');if(o){openModal();return}
